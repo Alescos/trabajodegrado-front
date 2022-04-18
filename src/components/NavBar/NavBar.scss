@@ -1,0 +1,18 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.NavBar {
+  background-color: $background-color !important;
+  box-shadow: 0px 0px $size-sm $shadow-color;
+  //   display: flex;
+  //   justify-content: space-between !important;
+}
+
+#offcanvasNavbar {
+  background-color: #487497;
+}
+#offcanvasNavbar a {
+  color: #d6d6d6;
+}
+#offcanvasNavbarLabel {
+  color: #d6d6d6;
+}

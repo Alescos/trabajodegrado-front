@@ -1,0 +1,12 @@
+@import '/src/Assets/Styles/Variables.scss';
+.mainButton {
+  background-color: $background-color;
+  border-radius: $size-md;
+  border: #ffff;
+  box-shadow: 0px 0px $size-sm $shadow-color;
+  margin: 3px;
+}
+
+.mainButton:hover {
+  background-color: $backgroundhover-color;
+}

@@ -1,0 +1,55 @@
+.container {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 25% 10% 25% 20%;
+  grid-template-rows: 5% 15% 5% 15% 5% 15% 5% 15% 5%;
+}
+
+.name {
+  grid-column-start: 0;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+}
+.email {
+  grid-column-start: 0;
+  grid-column-end: span 2;
+  grid-row-start: 4;
+  grid-row-end: span 1;
+}
+.password {
+  grid-column-start: 4;
+  grid-column-end: span 6;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+}
+.confirmPassword {
+  grid-column-start: 4;
+  grid-column-end: span 6;
+  grid-row-start: 4;
+  grid-row-end: span 1;
+}
+.prueba {
+  grid-column-start: 4;
+  grid-column-end: span 6;
+  grid-row-start: 6;
+  grid-row-end: span 1;
+}
+.saveButton {
+  grid-column-start: 4;
+  grid-column-end: span 6;
+  grid-row-start: 8;
+  grid-row-end: span 1;
+  justify-self: center;
+  align-self: center;
+}
+.backButton {
+  grid-column-start: 0;
+  grid-column-end: span 2;
+  grid-row-start: 8;
+  grid-row-end: span 1;
+  justify-self: center;
+  align-self: center;
+}

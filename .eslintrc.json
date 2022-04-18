@@ -24,14 +24,39 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "no-use-before-define": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
     "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": ["warm", { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "ts": "never",
-        "tsx": "always"
+        "tsx": "never"
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": { "multiline": true },
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
       }
     ]
   }

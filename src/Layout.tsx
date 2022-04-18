@@ -1,13 +1,17 @@
-import React from 'react';
 import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
+import RegisterUser from './components/RegisterUser/RegisterUser';
+import './Layout.scss';
 
 function Layout() {
   return (
-    <>
-      <Header />
+    <div className="main">
+      <NavBar />
+      <div className="content">
+        <RegisterUser />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 export default Layout;
