@@ -5,8 +5,18 @@
   border: #ffff;
   box-shadow: 0px 0px $size-sm $shadow-color;
   margin: 3px;
+  padding: 3px 5px;
+  font-size: 15px !important;
+  min-width: fit-content;
+  height: 30px;
 }
 
 .mainButton:hover {
   background-color: $backgroundhover-color;
+}
+
+@media (max-width: 600px) {
+  .mainButton {
+    font-size: 15px !important;
+  }
 }

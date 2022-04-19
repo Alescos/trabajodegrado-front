@@ -1,6 +1,6 @@
 import Footer from './components/Footer/Footer';
+import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
-import RegisterUser from './components/RegisterUser/RegisterUser';
 import './Layout.scss';
 
 function Layout() {
@@ -8,7 +8,8 @@ function Layout() {
     <div className="main">
       <NavBar />
       <div className="content">
-        <RegisterUser />
+        <Login />
+        {/* <Route /> */}
       </div>
       <Footer />
     </div>

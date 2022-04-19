@@ -4,17 +4,6 @@ import './RegisterUser.scss';
 function RegisterUser(): JSX.Element {
   return (
     <div className="container">
-      <div className="name">
-        <label htmlFor="exampleFormControlInput1" className="form-label">
-          Nombre completo
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Nombre completo"
-        />
-      </div>
       <div className="email">
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Correo Electronico
@@ -26,6 +15,18 @@ function RegisterUser(): JSX.Element {
           placeholder="name@example.com"
         />
       </div>
+      <div className="name">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          Nombre completo
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Nombre completo"
+        />
+      </div>
+
       <div className="password">
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Contraseña
@@ -50,7 +51,7 @@ function RegisterUser(): JSX.Element {
       </div>
       <div className="prueba">
         <label htmlFor="exampleFormControlInput1" className="form-label">
-          adas
+          Número telefónico
         </label>
         <input
           className="form-control"
