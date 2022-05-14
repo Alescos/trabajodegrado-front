@@ -24,8 +24,10 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "no-use-before-define": "off",
+    "no-console": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "operator-linebreak": ["error", "after"],
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

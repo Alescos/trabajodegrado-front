@@ -1,21 +1,16 @@
+import { FormEventHandler } from 'react';
 import { Button } from 'react-bootstrap';
 import './MainButton.scss';
 
 type ButtonProps = {
   name: string;
   variant: string;
-};
-const defaultProps: ButtonProps = {
-  name: 'Aceptar',
-  variant: 'info',
+  evnt: FormEventHandler;
 };
 
-function MainButton({
-  name = defaultProps.name,
-  variant = defaultProps.variant,
-}: ButtonProps = defaultProps) {
+function MainButton({ name, variant, evnt }: ButtonProps) {
   return (
-    <Button className="mainButton" variant={variant}>
+    <Button onSubmit={evnt} className="mainButton" variant={variant}>
       {name}
     </Button>
   );
