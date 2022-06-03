@@ -3,30 +3,32 @@ import { Link } from 'react-router-dom';
 import './Login.scss';
 
 function Login() {
-  // const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  /* useEffect(() => {
-    if (localStorage.getItem('user-info')) {
-      navigate('/login');
-    }
-  }); */
+
   async function login() {
-    const item = {
+    const user = {
       email,
       password,
     };
     try {
-      const res = await fetch('http://localhost:8000/login', {
+      const res = await fetch('http://localhost:8000/users/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
+          alg: 'HS256',
+          typ: 'JWT',
           'Content-Type': 'application/json',
         },
-        // mode: 'no-cors',
-        body: JSON.stringify(item),
+        credentials: 'include',
+        body: JSON.stringify(user),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+        return response.json();
       });
-      console.log(res);
+      localStorage.setItem('token', res.token);
     } catch (error) {
       console.error(error);
     }
@@ -34,44 +36,43 @@ function Login() {
 
   return (
     <div className="container">
-      <h1 className="title">Iniciar sesión</h1>
-      <div className="email">
-        <div className="form-floating">
-          <input
-            type="email"
-            className="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label id="emailLabel" htmlFor="floatingInput">
-            Correo Electrónico
-          </label>
+      <div className="form">
+        <h1 className="title">Iniciar sesión</h1>
+        <div className="email">
+          <div className="form-floating">
+            <input
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label id="emailLabel" htmlFor="floatingInput">
+              Correo Electrónico
+            </label>
+          </div>
         </div>
-      </div>
-      <div className="password">
-        <div className="form-floating">
-          <input
-            type="password"
-            className="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label id="passwordLabel" htmlFor="floatingPassword">
-            Password
-          </label>
+        <div className="password">
+          <div className="form-floating">
+            <input
+              type="password"
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label id="passwordLabel" htmlFor="floatingPassword">
+              Password
+            </label>
+          </div>
         </div>
+        <Link className="link" to="/Register">
+          Registrarme
+        </Link>
+        <button className="mainButton" onClick={login} type="button">
+          Ingresar
+        </button>
       </div>
-      <Link className="link" to="/Register">
-        Registrarme
-      </Link>
-      {/* <a className="link" href="/Register">
-        Registrarme
-      </a> */}
-      <button className="mainButton" onClick={login} type="button">
-        Ingresar
-      </button>
     </div>
   );
 }

@@ -12,7 +12,7 @@ import './NavBar.scss';
 
 function NavBar() {
   return (
-    <Navbar className="NavBar" variant="light" expand={false}>
+    <Navbar className="NavBar background-image" variant="light" expand={false}>
       <Container fluid>
         <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />

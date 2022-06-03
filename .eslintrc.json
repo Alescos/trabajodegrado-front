@@ -28,6 +28,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "operator-linebreak": ["error", "after"],
+    "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

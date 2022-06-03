@@ -1,25 +1,23 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
-import Login from './components/Login/Login';
-import NavBar from './components/NavBar/NavBar';
-import Register from './components/RegisterUser/RegisterUser';
+import { Outlet } from 'react-router-dom';
+// import NavBar from './components/NavBar/NavBar';
+import { MenuOutline } from 'react-ionicons';
+import Navigation from './components/Navigation/Navigation';
 import './Layout.scss';
 
 function Layout() {
   return (
-    <div className="main">
-      <NavBar />
-      <div className="content">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </BrowserRouter>
+    <div className="content">
+      <Navigation />
+      <div className="main">
+        <div className="topbar">
+          <div className="toggle">
+            <button type="button">
+              <MenuOutline height="30px" width="30px" />
+            </button>
+          </div>
+        </div>
+        <Outlet />
       </div>
-      <Footer />
     </div>
   );
 }

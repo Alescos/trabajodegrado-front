@@ -8,29 +8,37 @@ body {
 }
 
 .container {
-  width: 60%;
-  display: grid;
-  margin: 0px 2%;
+  width: 100%;
+  margin: auto;
   height: 100%;
-  border: 2px solid $background-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  display: grid;
+  width: 80%;
+  height: auto;
+  min-height: 70%;
+  border: 2px solid #d0ddddf1;
   border-radius: 10px;
-  grid-template-columns: 25% 20% 10% 20% 25%;
-  grid-template-rows: 15% 10% 20% 5% 20% 10% 10% 5%;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 15% 10% 10% 15% 5% 15% 10% 10%;
 }
 .title {
   color: $font-color;
   grid-row: 2 / 3;
-  grid-column: 2 / span 3;
+  grid-column: 2 / 3;
   text-align: center;
   font-size: 2rem;
 }
 .email {
-  grid-column: 2/5;
+  grid-column: 2/3;
   grid-row: 4 / 5;
   font-size: 18px;
 }
 .password {
-  grid-column: 2 / span 3;
+  grid-column: 2 / 3;
   grid-row: 6 / 7;
   font-size: 18px;
 }
@@ -46,13 +54,15 @@ body {
 }
 .mainButton {
   grid-row: 8/9;
-  grid-column-end: 5;
+  grid-column-end: 3;
   justify-self: right;
   width: 120px;
 }
 
 @media (max-width: 600px) {
-  .container {
+  /* .container {
+  } */
+  .form {
     width: 80%;
     grid-template-columns: 10% 80% 10% !important;
   }
