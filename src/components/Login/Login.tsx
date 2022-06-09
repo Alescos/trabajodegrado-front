@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { login } from '../../Services/auth.service';
 import './Login.scss';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function login() {
+  const HandleForm = () => {
+    login(email, password);
+  };
+
+  /* async function login() {
     const user = {
       email,
       password,
@@ -32,7 +37,7 @@ function Login() {
     } catch (error) {
       console.error(error);
     }
-  }
+  } */
 
   return (
     <div className="container">
@@ -69,7 +74,7 @@ function Login() {
         <Link className="link" to="/Register">
           Registrarme
         </Link>
-        <button className="mainButton" onClick={login} type="button">
+        <button className="mainButton" onClick={HandleForm} type="button">
           Ingresar
         </button>
       </div>

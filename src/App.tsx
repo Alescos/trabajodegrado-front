@@ -4,6 +4,7 @@ import './App.scss';
 import Area from './components/Area/Area';
 import Card from './components/Card/Card';
 import Login from './components/Login/Login';
+import Organization from './components/Organization/Organization';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import Layout from './Layout';
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<RegisterUser />} />
         <Route element={<Layout />}>
           <Route path="area" element={<Area />} />
+          <Route path="organization" element={<Organization />} />
         </Route>
         <Route path="card" element={<Card />} />
 

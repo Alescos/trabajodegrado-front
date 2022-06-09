@@ -1,11 +1,16 @@
+/* eslint-disable react/destructuring-assignment */
 import { FlaskOutline } from 'react-ionicons';
 import { Link } from 'react-router-dom';
 
 import './Navigation.scss';
 
-function Navigation() {
+type Props = {
+  active: boolean;
+};
+
+function Navigation(props: Props) {
   return (
-    <div className="navigation">
+    <div className={`navigation ${props.active ? 'active' : ''}`}>
       <ul>
         <li>
           <Link to="/">

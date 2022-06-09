@@ -31,6 +31,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  padding-left: 0.5rem;
 }
 
 .navigation ul li {
@@ -70,7 +71,6 @@ body {
   height: 60px;
   line-height: 60px;
   text-align: center;
-  padding-top: 5px;
 }
 
 .navigation ul li a .icon ion-icon {

@@ -1,0 +1,88 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.main .organization {
+  margin: 1em;
+  margin-top: 0.5em;
+  margin-left: 5em;
+  height: 100%;
+  //   min-width: fit-content;
+  width: 60%;
+  transition: width 0.5s;
+}
+.main.active .organization {
+  width: 70%;
+  transition: width 0.5s;
+}
+.organization_header {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: $border-radius1;
+  box-shadow: 2px 2px $shadow-color;
+}
+.organization_header_logo {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.organization_header_information {
+  width: 50%;
+  color: $font-color;
+}
+
+.organization_header_areas span {
+  display: block;
+  font-size: 16px;
+  color: $font-color;
+}
+.organization_header_areas a {
+  text-decoration: none;
+  text-align: center;
+}
+
+.organization_header_areas a span {
+  color: $backgroundMain-color;
+  font-size: 24px;
+}
+
+.organization_body_card {
+  background-color: white;
+  padding: 1em;
+  border-radius: $border-radius1;
+  box-shadow: 2px 2px $shadow-color;
+}
+
+.card_body_card_header {
+  border-bottom: solid rgb(204, 204, 204);
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_body_card_header a {
+  text-decoration: none;
+  color: $font-color;
+  font-size: 15px;
+  // background-color: $background-color;
+  text-align: center;
+  justify-content: center;
+  border-radius: $border-radius2;
+  width: 100px;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+  box-shadow: 2px 2px $shadow-color;
+  transition: width 0.5s;
+}
+.main.active .card_body_card_header a {
+  width: 150px;
+  transition: width 0.5s;
+}
+.card_body_card_header a:hover {
+  background-color: $background-color2;
+}
+.card_body_card_title {
+  width: 70%;
+  text-align: justify;
+}
