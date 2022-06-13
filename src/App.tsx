@@ -1,3 +1,7 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/function-component-definition */
+/* eslint-disable react/jsx-wrap-multilines */
 // import logo from './logo.svg';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
@@ -5,24 +9,32 @@ import Area from './components/Area/Area';
 import Card from './components/Card/Card';
 import Login from './components/Login/Login';
 import Organization from './components/Organization/Organization';
+import ProtectedRoute from './components/ProtectedRoute';
 import RegisterUser from './components/RegisterUser/RegisterUser';
+import { AuthProvider } from './Hooks/useAuth';
 import Layout from './Layout';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegisterUser />} />
-        <Route element={<Layout />}>
-          <Route path="area" element={<Area />} />
-          <Route path="organization" element={<Organization />} />
-        </Route>
-        <Route path="card" element={<Card />} />
-
-        {/* <Route path="*">Not Found</Route> */}
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<RegisterUser />} />
+          <Route
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/" element={<Area />} />
+            <Route path="area" element={<Area />} />
+            <Route path="organization" element={<Organization />} />
+          </Route>
+          <Route path="card" element={<Card />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

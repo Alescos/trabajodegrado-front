@@ -6,25 +6,7 @@ import { Link } from 'react-router-dom';
 import OrganizationLogo from '../../Assets/Images/icons8-cromatografía-100.png';
 import './Organization.scss';
 
-/* async function getOrganization() {
-  const res = await fetch('http://localhost:8000/organization/1').then(
-    (data) => {
-      if (!data.ok) {
-        throw Error('Organización no encontrada');
-      }
-      return data.json();
-    }
-  );
-  return res;
-}
- */
 function Organization() {
-  /* const res = fetch('http://localhost:8000/organization/1').then((data) => {
-    if (!data.ok) {
-      throw Error('Organización no encontrada');
-    }
-    return data.json();
-  }); */
   const [organization, setOrganization] = useState({
     name: '',
     nit: '',

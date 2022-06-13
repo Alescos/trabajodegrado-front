@@ -1,8 +1,22 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable no-shadow */
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable consistent-return */
+/* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-const AuthContext = createContext(false);
+const initialState = {
+  user: null,
+  isAuthenticated: false,
+};
+interface AuthContextType {
+  user: any;
+  signin: (user: string, callback: VoidFunction) => void;
+  signout: (callback: VoidFunction) => void;
+}
 
+const AuthContext = createContext<AuthContextType>(null!);
 const useAuth = () => {
   const auth = useContext(AuthContext);
   return auth;
@@ -10,50 +24,26 @@ const useAuth = () => {
 
 export default useAuth;
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  if (isAuthenticated) {
-    return (
-      <AuthContext.Provider value={isAuthenticated}>
-        {children}
-      </AuthContext.Provider>
-    );
-  }
-}
-
-/* const AuthContext = createContext(null);
-
-type props = {
-  children: ReactNode;
-};
-
-export const useAuth = () => {
-  const auth = useContext(AuthContext);
-
-  return auth;
-};
-
-export function AuthProvider({ children }: props) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const login = () => {
+  const signin = (user: any, callback: VoidFunction) => {
+    setUser(user);
     setIsAuthenticated(true);
+    callback();
   };
-
-  const logout = () => {
+  const signout = (callback: VoidFunction) => {
+    setUser(null);
     setIsAuthenticated(false);
+    callback();
   };
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        login,
-        logout,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
-} */
+  const value = {
+    user,
+    signin,
+    signout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

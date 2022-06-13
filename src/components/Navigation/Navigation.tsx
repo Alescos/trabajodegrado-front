@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import { FlaskOutline } from 'react-ionicons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 import './Navigation.scss';
 
@@ -9,15 +10,22 @@ type Props = {
 };
 
 function Navigation(props: Props) {
+  const navigate = useNavigate();
+  const auth = useAuth();
+
+  const HandleClick = () => {
+    auth.signout(() => navigate('/login'));
+  };
+
   return (
     <div className={`navigation ${props.active ? 'active' : ''}`}>
       <ul>
         <li>
-          <Link to="/">
+          <Link to="/organization/1">
             <span className="icon">
               <FlaskOutline />
             </span>
-            <span className="title">Brand Name</span>
+            <span className="title">Organización</span>
           </Link>
         </li>
         <li>
@@ -33,7 +41,7 @@ function Navigation(props: Props) {
             <span className="icon">
               <FlaskOutline />
             </span>
-            <span className="title">Help</span>
+            <span className="title">Usuarios</span>
           </Link>
         </li>
         <li>
@@ -41,7 +49,17 @@ function Navigation(props: Props) {
             <span className="icon">
               <FlaskOutline />
             </span>
-            <span className="title">Settings</span>
+            <span className="title">Areas</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/login">
+            <span className="icon">
+              <FlaskOutline />
+            </span>
+            <button type="button" className="logout" onClick={HandleClick}>
+              <span className="title">Cerrar Sesión</span>
+            </button>
           </Link>
         </li>
       </ul>

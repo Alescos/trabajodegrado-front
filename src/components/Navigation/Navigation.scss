@@ -50,6 +50,10 @@ body {
   margin-bottom: 40px;
 }
 
+.navigation ul li:nth-last-child(1) {
+  margin-top: 40px;
+}
+
 .navigation ul li a {
   position: relative;
   display: block;
@@ -119,6 +123,14 @@ body {
   pointer-events: none;
 }
 
+.logout {
+  background-color: transparent;
+  border: transparent;
+  font-size: 20px;
+}
+.logout span {
+  font-size: 20px;
+}
 /* main */
 /* .main {
   position: absolute;

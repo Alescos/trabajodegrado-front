@@ -1,43 +1,26 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 import { login } from '../../Services/auth.service';
 import './Login.scss';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const HandleForm = () => {
-    login(email, password);
-  };
-
-  /* async function login() {
-    const user = {
-      email,
-      password,
-    };
-    try {
-      const res = await fetch('http://localhost:8000/users/login', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          alg: 'HS256',
-          typ: 'JWT',
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(user),
-      }).then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status}`);
-        }
-        return response.json();
-      });
-      localStorage.setItem('token', res.token);
-    } catch (error) {
-      console.error(error);
+  const HandleForm = async () => {
+    const user = await login(email, password);
+    if (user) {
+      auth.signin(user, () => navigate('/'));
+    } else {
+      <Alert key="danger" variant="danger">
+        Usuario o contraseña incorrectas!
+      </Alert>;
     }
-  } */
+  };
 
   return (
     <div className="container">
