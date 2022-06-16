@@ -1,0 +1,87 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.userDashboard {
+  margin: 1vh 2vw;
+  height: 100%;
+}
+
+.userDashboard_header {
+  display: flex;
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+.userDashboard_header h1 {
+  border-right: solid $background-color;
+  padding-right: 1vw;
+  font-size: $title-size;
+}
+.userDashboard_header-nav {
+  display: block;
+  text-align: center;
+  margin-left: 1vw;
+  justify-items: center;
+  justify-content: center;
+}
+
+.userDashboard_header-nav a {
+  height: 100%;
+  text-decoration: none;
+  color: $background-color;
+  font-size: $font-size;
+}
+
+.userDashboard_header-nav a:hover {
+  color: $background-color2;
+}
+
+.userDashboard_content {
+  border-radius: $border-radius1 $border-radius1 0px 0px;
+  margin-top: 2vh;
+  background-color: white;
+  height: 100%;
+  //   padding: 2vh;
+  padding-bottom: 0px;
+}
+
+.userDashboard_content-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid $font-color;
+}
+
+.userDashboard_content-header #search-bar {
+  width: 60%;
+  border: solid $background-color;
+  border-radius: $border-radius1;
+  padding: 3px 10px;
+  margin: 2vh 1vw;
+}
+
+.userDashboard_content-header button {
+  border-radius: $border-radius1;
+  padding: 5px;
+  width: 100px;
+  margin: 2vh 1vw;
+  background-color: $background-color;
+  border: none;
+}
+
+.userDashboard_content-header button:hover {
+  background-color: $background-color2;
+}
+
+.userDashboard_content-header a {
+  text-align: center;
+  text-decoration: none;
+  background-color: $background-color;
+  color: black;
+  border-radius: $border-radius1;
+  padding: 5px;
+  width: 20%;
+  margin: 2vh 1vw;
+}
+
+.userDashboard_content-header a:hover {
+  background-color: $background-color2;
+}

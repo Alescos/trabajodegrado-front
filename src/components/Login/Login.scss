@@ -55,8 +55,14 @@ body {
 .mainButton {
   grid-row: 8/9;
   grid-column-end: 3;
+  text-align: center;
+  padding: 2px;
   justify-self: right;
   width: 120px;
+}
+
+.mainButton:hover {
+  background-color: $background-color2;
 }
 
 @media (max-width: 600px) {

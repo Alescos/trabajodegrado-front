@@ -1,5 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
-import { FlaskOutline } from 'react-ionicons';
+import {
+  BusinessOutline,
+  ExitOutline,
+  PeopleOutline,
+  PulseOutline,
+  StatsChartOutline,
+} from 'react-ionicons';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
@@ -21,9 +27,9 @@ function Navigation(props: Props) {
     <div className={`navigation ${props.active ? 'active' : ''}`}>
       <ul>
         <li>
-          <Link to="/organization/1">
+          <Link to="/organization">
             <span className="icon">
-              <FlaskOutline />
+              <BusinessOutline />
             </span>
             <span className="title">Organización</span>
           </Link>
@@ -31,15 +37,15 @@ function Navigation(props: Props) {
         <li>
           <Link to="/">
             <span className="icon">
-              <FlaskOutline />
+              <StatsChartOutline />
             </span>
             <span className="title">Dashboard</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/users">
             <span className="icon">
-              <FlaskOutline />
+              <PeopleOutline />
             </span>
             <span className="title">Usuarios</span>
           </Link>
@@ -47,7 +53,7 @@ function Navigation(props: Props) {
         <li>
           <Link to="/">
             <span className="icon">
-              <FlaskOutline />
+              <PulseOutline />
             </span>
             <span className="title">Areas</span>
           </Link>
@@ -55,7 +61,7 @@ function Navigation(props: Props) {
         <li>
           <Link to="/login">
             <span className="icon">
-              <FlaskOutline />
+              <ExitOutline />
             </span>
             <button type="button" className="logout" onClick={HandleClick}>
               <span className="title">Cerrar Sesión</span>

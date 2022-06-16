@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { login } from '../../Services/auth.service';
 import './Login.scss';
@@ -54,9 +54,9 @@ function Login() {
             </label>
           </div>
         </div>
-        <Link className="link" to="/Register">
+        {/*         <Link className="link" to="/Register">
           Registrarme
-        </Link>
+        </Link> */}
         <button className="mainButton" onClick={HandleForm} type="button">
           Ingresar
         </button>
