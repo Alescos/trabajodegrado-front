@@ -60,10 +60,10 @@ function Navigation(props: Props) {
         </li>
         <li>
           <Link to="/login">
-            <span className="icon">
-              <ExitOutline />
-            </span>
             <button type="button" className="logout" onClick={HandleClick}>
+              <span className="icon">
+                <ExitOutline />
+              </span>
               <span className="title">Cerrar Sesión</span>
             </button>
           </Link>

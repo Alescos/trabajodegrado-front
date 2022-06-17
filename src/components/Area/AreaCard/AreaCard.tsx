@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import ImageFont from '../../Assets/Images/bg-image1.jpg';
-import Logo from '../../Assets/Images/icons8-cromatografía-100.png';
-import './Card.scss';
+import ImageFont from '../../../Assets/Images/bg-image1.jpg';
+import Logo from '../../../Assets/Images/icons8-cromatografía-100.png';
+import './AreaCard.scss';
 
-function Card() {
+function AreaCard() {
   return (
     <Link to="/" className="card">
       <img src={ImageFont} className="card__image" alt="" />
@@ -24,4 +24,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default AreaCard;

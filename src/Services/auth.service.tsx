@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable arrow-body-style */
-const API_URL = 'http://localhost:8000/users/';
+const API_URL = 'http://localhost:8000/';
 
 export const login = async (email: string, password: string) => {
   const user = {

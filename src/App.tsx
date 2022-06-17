@@ -5,12 +5,12 @@
 // import logo from './logo.svg';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import Area from './components/Area/Area';
-import Card from './components/Card/Card';
+import AreaCard from './components/Area/AreaCard/AreaCard';
+import AreaDashboard from './components/Area/AreaDashboard/AreaDashboard';
+import CreateArea from './components/Area/CreateArea/CreateArea';
 import Login from './components/Login/Login';
 import Organization from './components/Organization/Organization';
 import ProtectedRoute from './components/ProtectedRoute';
-import RegisterArea from './components/RegisterArea/RegisterArea';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import UserDashboard from './components/Users/UserDashboard/UserDashboard';
 import { AuthProvider } from './Hooks/useAuth';
@@ -30,14 +30,14 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/" element={<Area />} />
-            <Route path="area" element={<Area />} />
-            <Route path="register/area" element={<RegisterArea />} />
+            <Route path="/" element={<AreaDashboard />} />
+            <Route path="area" element={<AreaDashboard />} />
+            <Route path="register/area" element={<CreateArea />} />
             <Route path="organization" element={<Organization />} />
             <Route path="users" element={<UserDashboard />} />
             <Route path="register/user" element={<RegisterUser />} />
           </Route>
-          <Route path="card" element={<Card />} />
+          <Route path="card" element={<AreaCard />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

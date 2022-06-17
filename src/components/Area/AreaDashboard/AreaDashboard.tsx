@@ -1,7 +1,7 @@
 import { AddCircleOutline } from 'react-ionicons';
 import { Link } from 'react-router-dom';
-import Card from '../Card/Card';
-import './Area.scss';
+import AreaCard from '../AreaCard/AreaCard';
+import './AreaDashboard.scss';
 
 function Area() {
   return (
@@ -24,13 +24,13 @@ function Area() {
         </div>
       </div>
       <div className="area_content">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <AreaCard />
+        <AreaCard />
+        <AreaCard />
+        <AreaCard />
+        <AreaCard />
+        <AreaCard />
+        <AreaCard />
       </div>
     </div>
   );
