@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable consistent-return */
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -12,13 +14,15 @@ function Login() {
   const auth = useAuth();
 
   const HandleForm = async () => {
-    const user = await login(email, password);
-    if (user) {
+    const user: string = await login(email, password);
+    if (user !== null) {
       auth.signin(user, () => navigate('/'));
     } else {
-      <Alert key="danger" variant="danger">
-        Usuario o contraseña incorrectas!
-      </Alert>;
+      return (
+        <Alert key="danger" variant="danger">
+          Usuario o contraseña incorrectas!
+        </Alert>
+      );
     }
   };
 

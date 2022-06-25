@@ -17,7 +17,6 @@ function Organization() {
       .then((res) => res.json())
       .then((data) => setOrganization(data));
   }, []);
-  console.log(organization);
   return (
     <div className="organization">
       <div className="organization_header">

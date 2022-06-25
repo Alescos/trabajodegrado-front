@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+import { createUser } from '../../Services/user.service';
 import './RegisterUser.scss';
 
 function RegisterUser() {
@@ -12,6 +14,8 @@ function RegisterUser() {
   const [validate, setValidate] = useState(false);
   const [identical, setIdentical] = useState(false);
   const [passwordError, setPasswordErr] = useState('');
+  const [area, setArea] = useState('');
+  const auth = useAuth();
 
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
@@ -83,14 +87,25 @@ function RegisterUser() {
   }, [passwordInput]);
 
   async function register() {
+    const { user } = auth;
+    const { organization } = user.data;
     const password = passwordInput.firstPassword;
-    const user = {
+    const newUser = {
       email,
       name,
       phone,
       password,
+      organization,
     };
     try {
+      console.log(newUser);
+      createUser(newUser).then(() => {
+        navigate(-1);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    /* try {
       const res = await fetch('http://localhost:8000/users/register', {
         method: 'POST',
         headers: {
@@ -101,10 +116,9 @@ function RegisterUser() {
       }).then(() => {
         navigate('/login');
       });
-      console.log(res);
     } catch (error) {
       console.error(error);
-    }
+    } */
   }
 
   return (
@@ -184,7 +198,7 @@ function RegisterUser() {
               type="text"
               placeholder="Area a la que pertenece"
               aria-label="Area en la que trabaja el usuario"
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => setArea(e.target.value)}
             />
           </div>
           <div className="saveButton">
