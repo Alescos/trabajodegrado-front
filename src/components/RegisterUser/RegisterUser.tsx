@@ -98,7 +98,6 @@ function RegisterUser() {
       organization,
     };
     try {
-      console.log(newUser);
       createUser(newUser).then(() => {
         navigate(-1);
       });

@@ -1,8 +1,49 @@
+/* eslint-disable comma-dangle */
+import { useEffect, useState } from 'react';
 import { CreateOutline } from 'react-ionicons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import { createArea } from '../../../Services/area.service';
 import './CreateArea.scss';
 
 function RegisterArea() {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [phone, setPhone] = useState('');
+  const [status, setStatus] = useState(true);
+  const [organization, setOrganization] = useState(0);
+  const auth = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const { user } = auth;
+    setOrganization(Number(user.data.organization));
+  }, [auth]);
+
+  async function register() {
+    const newArea = {
+      name,
+      description,
+      location,
+      phone,
+      status,
+      organization,
+    };
+    createArea(newArea).then(() => {
+      navigate(-1);
+    });
+  }
+
+  const handleStatus: (event: React.ChangeEvent<HTMLSelectElement>) => void = (
+    event
+  ) => {
+    const { value } = event.target;
+    if (value === 'true') {
+      setStatus(true);
+    } else {
+      setStatus(false);
+    }
+  };
   return (
     <div className="register_area">
       <div className="toolbar">
@@ -18,11 +59,11 @@ function RegisterArea() {
                 <Link to="/users">Usuarios</Link>
               </li>
               <li>
-                <Link to="/">volver</Link>
+                <Link to="/area">volver</Link>
               </li>
             </ul>
           </div>
-          <button className="btn_createUser" type="button">
+          <button className="btn_createUser" type="button" onClick={register}>
             Crear
           </button>
         </div>
@@ -55,7 +96,7 @@ function RegisterArea() {
                   </div>
                 </div>
                 <div className="card_image_description">
-                  <p>Set the image area</p>
+                  <p>Definir la imagen del area</p>
                 </div>
               </div>
               <div className="card_area_status">
@@ -63,6 +104,24 @@ function RegisterArea() {
                   <div className="card_image_title">
                     <h2>Estado</h2>
                   </div>
+                  <div className="card_toolbar">
+                    <div className="rounden_circle_status status_active" />
+                  </div>
+                </div>
+                <div className="card_image_body">
+                  <select
+                    className="card_select_status"
+                    name=""
+                    id=""
+                    onChange={handleStatus}
+                  >
+                    <option className="card_select_option" value="true">
+                      Activa
+                    </option>
+                    <option className="card_select_option" value="false">
+                      Inactiva
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -79,19 +138,46 @@ function RegisterArea() {
                       <div className="card_body_input">
                         <label htmlFor="">
                           <p className="required">Nombre Area</p>
-                          <input type="text" placeholder="Nombre del area" />
+                          <input
+                            type="text"
+                            placeholder="Nombre del area"
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                        </label>
+                      </div>
+                      <div className="card_body_input description">
+                        <label htmlFor="">
+                          <p>Descripción</p>
+                          <input
+                            type="text"
+                            placeholder="Ingrese una descripción"
+                            onChange={(e) => setDescription(e.target.value)}
+                          />
                         </label>
                       </div>
                       <div className="card_body_input">
                         <label htmlFor="">
-                          <p>Descripción</p>
-                          <input type="text" />
+                          <p>Ubicación</p>
+                          <input
+                            type="text"
+                            placeholder="Ingresar la ubicación del area"
+                            onChange={(e) => setLocation(e.target.value)}
+                          />
+                          <div className="card_body_location_description">
+                            <p>
+                              Ingrese la ubicación donde se encuentra el area
+                            </p>
+                          </div>
                         </label>
                       </div>
                       <div className="card_body_input">
                         <label htmlFor="">
                           <p>Telefono</p>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            placeholder="Telefono"
+                            onChange={(e) => setPhone(e.target.value)}
+                          />
                         </label>
                       </div>
                     </div>
