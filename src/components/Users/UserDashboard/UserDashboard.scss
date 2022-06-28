@@ -36,11 +36,11 @@
 }
 
 .userDashboard_content {
-  border-radius: $border-radius1 $border-radius1 0px 0px;
+  border-radius: $border-radius1;
   margin-top: 2vh;
   background-color: white;
-  height: 100%;
-  //   padding: 2vh;
+  height: 80vh;
+  padding: 2vh;
   padding-bottom: 0px;
 }
 
@@ -84,4 +84,75 @@
 
 .userDashboard_content-header a:hover {
   background-color: $background-color2;
+}
+
+.userDashboard_content-table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  background-clip: border-box;
+  border: 1px solid #eff2f5;
+  border-radius: 0.625rem;
+  box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+}
+
+.userDashboard_table_header {
+  display: table-header-group;
+  vertical-align: bottom;
+  border-radius: 0.625rem;
+}
+
+.userDashboard_table_header th {
+  color: black;
+  background-color: $background-color3;
+}
+
+.userDashboard_table_header th,
+tr {
+  text-align: center;
+}
+
+.userDashboard_table_header tr {
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: #eff2f5;
+}
+
+.userDashboard_table_header tr:last-child,
+td:last-child,
+th:last-child {
+  padding-right: 0;
+}
+.userDashboard_table_header tr:first-child,
+td:first-child,
+th:first-child {
+  padding-left: 0;
+}
+
+.userDashboard_content-table tbody td {
+  color: #a1a5b7;
+  vertical-align: middle;
+  padding: 0.8rem 0;
+}
+
+.table_column_actions ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.table_column_actions ul li a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0.2rem;
+  vertical-align: middle;
+}
+
+.table_column_actions ul li a:hover {
+  color: $background-color2;
 }

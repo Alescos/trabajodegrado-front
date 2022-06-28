@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signin = (user: any, callback: VoidFunction) => {
     setUser(user);
+    localStorage.setItem('user', user);
     setIsAuthenticated(true);
     callback();
   };

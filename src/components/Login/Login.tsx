@@ -10,62 +10,64 @@ import './Login.scss';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [authenticate, setAuthenticate] = useState(true);
   const navigate = useNavigate();
   const auth = useAuth();
 
   const HandleForm = async () => {
     const user: string = await login(email, password);
-    if (user !== null) {
+    if (user !== undefined) {
+      setAuthenticate(true);
       auth.signin(user, () => navigate('/'));
     } else {
-      return (
-        <Alert key="danger" variant="danger">
-          Usuario o contraseña incorrectas!
-        </Alert>
-      );
+      setAuthenticate(false);
     }
   };
 
   return (
-    <div className="container">
-      <div className="form">
-        <h1 className="title">Iniciar sesión</h1>
-        <div className="email">
-          <div className="form-floating">
-            <input
-              type="email"
-              className="form-control"
-              id="floatingInput"
-              placeholder="name@example.com"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label id="emailLabel" htmlFor="floatingInput">
-              Correo Electrónico
-            </label>
+    <>
+      {authenticate ? (
+        <div />
+      ) : (
+        <Alert variant="danger">Usuario o contraseña incorrecta</Alert>
+      )}
+      <div className="container">
+        <div className="form">
+          <h1 className="title">Iniciar sesión</h1>
+          <div className="email">
+            <div className="form-floating">
+              <input
+                type="email"
+                className="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label id="emailLabel" htmlFor="floatingInput">
+                Correo Electrónico
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="password">
-          <div className="form-floating">
-            <input
-              type="password"
-              className="form-control"
-              id="floatingPassword"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label id="passwordLabel" htmlFor="floatingPassword">
-              Password
-            </label>
+          <div className="password">
+            <div className="form-floating">
+              <input
+                type="password"
+                className="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label id="passwordLabel" htmlFor="floatingPassword">
+                Password
+              </label>
+            </div>
           </div>
+          <button className="mainButton" onClick={HandleForm} type="button">
+            Ingresar
+          </button>
         </div>
-        {/*         <Link className="link" to="/Register">
-          Registrarme
-        </Link> */}
-        <button className="mainButton" onClick={HandleForm} type="button">
-          Ingresar
-        </button>
       </div>
-    </div>
+    </>
   );
 }
 

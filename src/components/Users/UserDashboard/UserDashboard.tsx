@@ -1,13 +1,42 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/no-array-index-key */
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import { getAllUsers } from '../../../Services/user.service';
 import './UserDashboard.scss';
 
+type userData = {
+  email: string;
+  name: string;
+  phone: string;
+  createdAt: string;
+};
 function UserDashboard() {
+  const [users, setUsers] = useState<object[]>([]);
+  const auth = useAuth();
+  const id = auth.user.data.organization;
+  useEffect(() => {
+    getAllUsers(id).then((res: object[]) => {
+      setUsers(res);
+    });
+  }, []);
+
   return (
     <div className="userDashboard">
       <div className="userDashboard_header">
         <h1>Lista de usuarios</h1>
         <div className="userDashboard_header-nav">
-          <Link to="/">Home</Link>
+          <ul className="breadcrumb">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/areas">Areas</Link>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="userDashboard_content">
@@ -23,15 +52,37 @@ function UserDashboard() {
         </div>
         <div className="userDashboard_content-table">
           <table>
-            <thead>
+            <thead className="userDashboard_table_header">
               <tr>
-                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Nombre</th>
                 <th>Rol</th>
                 <th>Estado</th>
                 <th>Fecha de creacion</th>
                 <th>Acciones</th>
               </tr>
             </thead>
+            <tbody>
+              {users.map((user: any, index: number) => (
+                <tr key={index}>
+                  <td>{user.email}</td>
+                  <td>{user.name}</td>
+                  <td>{user.name}</td>
+                  <td>{user.name}</td>
+                  <td>{user.createdAt.split('T')[0]}</td>
+                  <td className="table_column_actions">
+                    <ul>
+                      <li>
+                        <Link to="/">Editar</Link>
+                      </li>
+                      <li>
+                        <Link to="/">Eliminar</Link>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

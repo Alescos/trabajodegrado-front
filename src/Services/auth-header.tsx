@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
-export default function authHeader() {
-  const userStr = localStorage.getItem('user');
+function authHeader() {
+  const userStr = sessionStorage.getItem('user');
   let user = null;
   let token = '';
   if (userStr) user = JSON.parse(userStr);
@@ -10,3 +10,4 @@ export default function authHeader() {
   }
   return token;
 }
+export default authHeader;

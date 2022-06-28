@@ -9,8 +9,11 @@
   width: 90%;
   transition: width 0.5s;
 }
+.organization {
+  margin: 2.5rem;
+}
 .main.active .organization {
-  width: 90%;
+  width: 80%;
   transition: width 0.5s;
 }
 .organization_header {
@@ -31,6 +34,13 @@
 .organization_header_information {
   width: 50%;
   color: $font-color;
+}
+
+.organization_header_information span {
+  text-align: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: x-large;
 }
 
 .organization_header_areas span {

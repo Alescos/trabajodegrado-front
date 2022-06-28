@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-return-await */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -9,18 +12,25 @@ import { getAllAreas } from '../../../Services/area.service';
 import AreaCard from '../AreaCard/AreaCard';
 import './AreaDashboard.scss';
 
+type inputData = {
+  id: number;
+  name: string;
+  description: string;
+  phone: string;
+  createdAt: string;
+};
+
 function Area() {
-  const [areas, setAreas] = useState<string[]>([]);
+  const [areas, setAreas] = useState<object[]>([]);
   const [amountAreas, setAmount] = useState(0);
   const auth = useAuth();
   useEffect(() => {
     const { user } = auth;
-    if (user) {
-      console.log(user.data.organization);
+    if (user !== undefined) {
       getAllAreas(user.data.organization).then((value) => {
-        const data: string[] = value;
-        setAreas(data);
+        const data: object[] = value;
         setAmount(data.length);
+        setAreas(data);
       });
     }
   }, []);
@@ -44,9 +54,10 @@ function Area() {
         </div>
       </div>
       <div className="area_content">
-        {areas.map(() => (
-          <AreaCard />
-        ))}
+        {areas.length > 0 &&
+          areas.map((area: object, index) => (
+            <AreaCard key={index} {...area} />
+          ))}
       </div>
     </div>
   );

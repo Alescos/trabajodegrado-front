@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import OrganizationLogo from '../../Assets/Images/icons8-cromatografía-100.png';
+import useAuth from '../../Hooks/useAuth';
+import { getAllAreas } from '../../Services/area.service';
+import { getOrganization } from '../../Services/organization.service';
 import './Organization.scss';
 
 function Organization() {
@@ -11,11 +14,25 @@ function Organization() {
     name: '',
     nit: '',
     description: '',
+    createdAt: '',
   });
+  const [amount, setAmount] = useState(0);
+  const auth = useAuth();
   useEffect(() => {
-    fetch('http://localhost:8000/organization/1')
-      .then((res) => res.json())
-      .then((data) => setOrganization(data));
+    const { user } = auth;
+    const id = user.data.organization;
+    getOrganization(id)
+      .then((data) => {
+        console.log(data);
+        setOrganization(data);
+      })
+      .then(() => {
+        console.log(organization);
+      });
+    getAllAreas(id).then((value) => {
+      const data: object[] = value;
+      setAmount(data.length);
+    });
   }, []);
   return (
     <div className="organization">
@@ -32,7 +49,7 @@ function Organization() {
         <div className="organization_header_areas">
           <span>Cantidad de areas</span>
           <Link to="/areas" className="areas_amount">
-            <span>4</span>
+            <span>{amount}</span>
           </Link>
         </div>
       </div>
@@ -45,27 +62,31 @@ function Organization() {
         </div>
         <div className="card_body">
           <Row>
-            <Col sm={4}>
+            <Col>
               <span>Nombre</span>
             </Col>
             <Col>
               <p>{organization.name}</p>
             </Col>
-          </Row>
-          <Row>
-            <Col sm={4}>
-              <span>NIT</span>
+            <Col>
+              <span>Ubicación</span>
             </Col>
             <Col>
               <p>02135156</p>
             </Col>
           </Row>
           <Row>
-            <Col sm={4}>
+            <Col>
               <span>NIT</span>
             </Col>
             <Col>
-              <p>02135156</p>
+              <p>{organization.nit}</p>
+            </Col>
+            <Col>
+              <span>Registro</span>
+            </Col>
+            <Col>
+              <p>{organization.createdAt.split('T')[0]}</p>
             </Col>
           </Row>
         </div>

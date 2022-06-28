@@ -1,3 +1,5 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable dot-notation */
 /* eslint-disable consistent-return */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable arrow-body-style */
@@ -25,7 +27,9 @@ export const login = async (email: string, password: string) => {
       }
       return response.json();
     });
-    localStorage.setItem('user', JSON.stringify(res));
+    const data = JSON.stringify(res.data);
+    sessionStorage.setItem('user', data);
+    localStorage.setItem('user', data);
     return res;
   } catch (error) {
     console.error(error);

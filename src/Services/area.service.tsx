@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:8000/areas/';
-const token = authHeader();
+
 type AreaInput = {
   name: string;
   description: string;
@@ -10,8 +11,17 @@ type AreaInput = {
   status: boolean;
   organization: number;
 };
+// console.log(token);
 export const getAllAreas = async (id: string) => {
-  const areas: string[] = await fetch(`${API_URL}getAll\\${id}`)
+  const token = authHeader();
+  const areas: object[] = await fetch(`${API_URL}getAll\\${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  })
     .then((res) => res.json())
     .then((response) => {
       const { data } = response;
@@ -21,6 +31,8 @@ export const getAllAreas = async (id: string) => {
 };
 
 export const createArea = async (area: AreaInput) => {
+  const token = await authHeader();
+  // console.log(token);
   const res = await fetch(`${API_URL}register`, {
     method: 'POST',
     headers: {

@@ -1,10 +1,20 @@
 /* eslint-disable consistent-return */
+
+import authHeader from './auth-header';
+
 /* eslint-disable import/prefer-default-export */
 const API_URL = 'http://localhost:8000/organization/';
-
-export const getOrganization = async (id: string) => {
+const token: string = authHeader();
+export const getOrganization = async (id: number) => {
   try {
-    const response = await fetch(`${API_URL}${id}`)
+    const response = await fetch(`${API_URL}${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
+    })
       .then((res) => res.json())
       .then((data) => data);
     return response;
