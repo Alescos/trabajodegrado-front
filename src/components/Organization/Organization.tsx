@@ -1,15 +1,18 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import OrganizationLogo from '../../Assets/Images/icons8-cromatografía-100.png';
+import { Link, useNavigate } from 'react-router-dom';
+import OrganizationLogo from '../../Assets/Images/OrganizationImages/DefaultImageOrganization.png';
 import useAuth from '../../Hooks/useAuth';
 import { getAllAreas } from '../../Services/area.service';
 import { getOrganization } from '../../Services/organization.service';
+import NavBar from '../NavBar/NavBar';
 import './Organization.scss';
 
 function Organization() {
+  const navigate = useNavigate();
   const [organization, setOrganization] = useState({
     name: '',
     nit: '',
@@ -20,22 +23,19 @@ function Organization() {
   const auth = useAuth();
   useEffect(() => {
     const { user } = auth;
-    const id = user.data.organization;
-    getOrganization(id)
-      .then((data) => {
-        console.log(data);
-        setOrganization(data);
-      })
-      .then(() => {
-        console.log(organization);
-      });
+    const id = user.organization;
+    getOrganization(id).then((data) => {
+      setOrganization(data);
+    });
     getAllAreas(id).then((value) => {
       const data: object[] = value;
       setAmount(data.length);
     });
   }, []);
+
   return (
     <div className="organization">
+      <NavBar name="Información de la organización" nameButton="Editar" />
       <div className="organization_header">
         <img
           src={OrganizationLogo}

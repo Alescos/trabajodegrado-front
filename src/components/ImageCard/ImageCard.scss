@@ -1,40 +1,14 @@
 @import '/src/Assets/Styles/Variables.scss';
-.register_area {
-  display: flex;
-  flex: 1 0;
-  flex-direction: column;
-}
-
-.card_area {
-  display: flex;
-  flex: 1 0;
-}
-
-.card_area_margin {
-  padding: 0 30px;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.card_area_content {
+.imageCard {
   display: flex;
   flex-direction: row;
-  gap: 2.5rem;
 }
-.card_area_left {
-  display: flex;
-  margin-right: 2.5rem;
-  gap: 2.5rem;
-  width: 300px;
-  margin-bottom: 1.75rem;
-  flex-direction: column;
-}
-.card_image_area {
+.imageCard_content {
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  max-height: 350px;
   word-wrap: break-word;
   background-color: #ffffff;
   background-clip: border-box;
@@ -45,11 +19,12 @@
   padding-bottom: 1rem;
 }
 
-.card_image_header {
+.imageCard_header {
   border-bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
+  justify-content: center;
   flex-wrap: wrap;
   min-height: 70px;
   padding: 0 2.25rem;
@@ -57,11 +32,11 @@
   margin-bottom: 0;
 }
 
-.card_image_header:first-child {
+.imageCard_header:first-child {
   border-radius: calc(0.625rem - 1px) calc(0.625 - 1px) 0 0;
 }
 
-.card_image_title {
+.imageCard_title {
   font-weight: 500;
   font-size: 1.275rem;
   color: #181c32;
@@ -71,37 +46,20 @@
   margin-left: 0;
   display: flex;
 }
-.card_image_title h2 {
+.imageCard_title h2 {
   font-size: calc(0.95rem + 0.9vh);
+  color: $font-color;
+  text-align: center;
 }
 
-.card_toolbar {
-  display: flex;
-  align-items: center;
-  margin: 0.5rem;
-  flex-wrap: wrap;
-}
-.rounden_circle_status {
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
-}
-.status_active {
-  background-color: #50cd89;
-}
-
-.status_inactive {
-  background-color: #f1416c;
-}
-
-.card_image_body {
+.imageCard_body {
   padding: 1.5rem 2rem;
   text-align: center;
   padding-top: 0;
   flex: 1 1 auto;
 }
 
-.card_image_input {
+.imageCard_input {
   background-image: url('data:image/png;base64,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');
   position: relative;
   display: inline-block;
@@ -122,7 +80,7 @@
   background-size: cover;
 }
 
-.card_image_input label {
+.imageCard_input label {
   border-radius: 50%;
   border: 0;
   left: 90%;
@@ -150,7 +108,7 @@
   vertical-align: middle;
   background-color: #ffffff;
 }
-.card_image_input i {
+.imageCard_input i {
   padding: 0;
   margin: 0;
   line-height: 1;
@@ -160,7 +118,7 @@
   color: #a1a5b7;
 }
 
-.input_image_area {
+.imageCard_input_image {
   // appearance: none;
   background-color: initial;
   cursor: default;
@@ -184,7 +142,7 @@
   opacity: 0;
 }
 
-.input_image_area {
+.imageCard_input_image {
   // appearance: none;
   background-color: initial;
   align-items: baseline;
@@ -207,195 +165,9 @@
   cursor: pointer;
 }
 
-.card_image_description {
+.imageCard_description {
   color: #a1a5b7;
   opacity: 1;
   font-size: 0.95rem;
   text-align: center;
 }
-
-.card_area_status {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #ffffff;
-  background-clip: border-box;
-  border-radius: 0.625rem;
-  border: 0;
-  box-shadow: 0px 0px 20 px 0px rgba(75, 87, 125, 0.02);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.card_select_status {
-  margin-bottom: 0.5rem;
-  box-shadow: none;
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #5e6278;
-  background-color: #ffffff;
-  width: 100%;
-  height: 2.5rem;
-  border: solid 1px #5e6278;
-  border-radius: 0.625rem;
-}
-
-.card_body {
-  display: block;
-  width: 50vw;
-}
-
-.card_body_container {
-  display: block;
-  transition: opacity 0.15s linear;
-}
-
-.card_body_content {
-  gap: 2.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.card_body_flush {
-  border: 0;
-  box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #ffffff;
-  background-clip: border-box;
-  border-radius: 0.625rem;
-}
-
-.card_body_header {
-  border-bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-wrap: wrap;
-  min-height: 70px;
-  padding: 0 2.25rem;
-  background-color: transparent;
-  border-radius: calc(0.625rem - 1px) calc(0.625rem - 1px) 0 0;
-  margin-bottom: 0;
-}
-
-.card_body_title {
-  font-weight: 500;
-  font-size: 1.275rem;
-  color: #181c32;
-  display: flex;
-  align-items: center;
-  margin: 0.5rem;
-  margin-left: 0;
-}
-
-.card_body_title h2 {
-  font-size: calc(0.95rem + 0.9vh);
-}
-
-.card_body_form {
-  padding: 2.5rem;
-  padding-top: 0;
-  flex: 1 1 auto;
-  display: block;
-}
-
-.card_body_input {
-  margin-bottom: 1rem;
-  position: relative;
-  display: block;
-}
-
-.card_body_input label {
-  margin-bottom: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #3f4254;
-  display: inline-block;
-  width: 100%;
-}
-.card_body_input label p {
-  margin-bottom: 0.5rem;
-}
-
-.card_body_input label input {
-  box-shadow: none;
-  margin-bottom: 0.5rem;
-  display: block;
-  width: 100%;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: #5e6278;
-  padding: 0.75rem 1rem;
-  background-color: #ffffff;
-  background-clip: padding-box;
-  border: 1px solid #e4e6ef;
-  appearance: none;
-  border-radius: 0.475rem;
-  transition: border-color 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  margin: 0;
-}
-
-.card_body_location_description p {
-  color: #a1a5b7;
-  opacity: 1;
-  font-size: 0.95rem;
-  text-align: left;
-}
-
-.required::after {
-  content: '*';
-  position: relative;
-  font-size: inherit;
-  color: #f1416c;
-  padding-left: 0.25rem;
-  font-weight: bold;
-}
-/* .register_area_card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #ffffff;
-  background-clip: border-box;
-  border-radius: 0.625rem;
-  padding: 2rem 2.25rem;
-  margin: 0.625rem;
-}
-
-.register_area_card-body {
-  padding: 2rem 2.25rem;
-}
-
-.card_body_container {
-  margin-bottom: 4.25rem !important;
-  position: relative;
-}
-
-.card_body_container_overlay {
-  position: relative;
-}
-
-.card_body_container_image {
-  background-image: url('https://sites.google.com/site/multisaberes58/especialidades/medicina-general.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 0.625rem;
-  min-height: 250px;
-}
-
-.register_area_form {
-  margin: 0.625 rem;
-}
- */

@@ -51,7 +51,7 @@ function Navigation(props: Props) {
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/areas">
             <span className="icon">
               <PulseOutline />
             </span>

@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-
 import authHeader from './auth-header';
 
 /* eslint-disable import/prefer-default-export */
@@ -17,9 +16,10 @@ export const getOrganization = async (id: number) => {
     })
       .then((res) => res.json())
       .then((data) => data);
+    // console.log(response);
     return response;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return error;
   }
 };

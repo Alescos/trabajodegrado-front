@@ -1,53 +1,53 @@
 @import '/src/Assets/Styles/Variables.scss';
 
-.area_header {
-  margin: 5px 5vw;
+.equipmentDashboard_header {
+  margin: 1.5rem 0.5rem;
   display: flex;
   height: 10vh;
   padding: 0.5rem;
+  align-items: center;
   justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
 }
 
-.area_header-title {
-  font-size: $title-size;
-  font-weight: 600;
-  text-align: center;
-}
-
-.area_header-information {
+.equipmentDashboard_header_information {
   display: block;
   font-size: $font-size;
   font-weight: 400;
   margin: 1vh;
 }
-.area_header-active-information {
+
+.equipmentDashboard_header_status {
   margin: 0.5vh;
   color: $background-color2;
 }
 
-.area_header_register {
+.equipmentDashboard_header_register {
   display: flex;
+  height: 50px;
+  align-items: center;
 }
 
-.area_header_register p {
+.equipmentDashboard_header_register p {
   margin: 1vh 1vw;
 }
 
-.area_header_register span svg {
+.equipmentDashboard_header_register span svg {
   color: $background-color;
   height: 35px;
   width: 35px;
   transition: 0.5s;
 }
 
-.area_header_register span svg:hover {
+.equipmentDashboard_header_register span svg:hover {
   transition: 0.5s;
   color: $background-color2;
   height: 45px;
   width: 45px;
 }
 
-.area_content {
+.equipmentDashboard_content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;

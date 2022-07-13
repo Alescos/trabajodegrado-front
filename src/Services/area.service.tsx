@@ -11,7 +11,7 @@ type AreaInput = {
   status: boolean;
   organization: number;
 };
-// console.log(token);
+
 export const getAllAreas = async (id: string) => {
   const token = authHeader();
   const areas: object[] = await fetch(`${API_URL}getAll\\${id}`, {

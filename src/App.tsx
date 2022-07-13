@@ -7,10 +7,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import AreaDashboard from './components/Area/AreaDashboard/AreaDashboard';
 import CreateArea from './components/Area/CreateArea/CreateArea';
+import EquipmentDashboard from './components/Equipments/EquipmentDashboard/EquipmentDashboard';
+import EquipmentDetails from './components/Equipments/EquipmentDetails/EquipmentDetails';
+import RegisterEquipment from './components/Equipments/RegisterEquipment/RegisterEquipment';
 import Login from './components/Login/Login';
 import Organization from './components/Organization/Organization';
 import ProtectedRoute from './components/ProtectedRoute';
-import RegisterUser from './components/RegisterUser/RegisterUser';
+import RegisterUser from './components/Users/RegisterUser/RegisterUser';
+import UpdateUser from './components/Users/UpdateUser/UpdateUser';
 import UserDashboard from './components/Users/UserDashboard/UserDashboard';
 import { AuthProvider } from './Hooks/useAuth';
 import Layout from './Layout';
@@ -32,10 +36,19 @@ function App() {
             <Route path="/" element={<AreaDashboard />} />
             <Route path="organization" element={<Organization />} />
             <Route path="users" element={<UserDashboard />} />
-            <Route path="register/user" element={<RegisterUser />} />
+            <Route path="users/register" element={<RegisterUser />} />
             <Route path="areas" element={<AreaDashboard />} />
             <Route path="register/area" element={<CreateArea />} />
-            <Route path="areas/:id" element={<RegisterUser />} />
+            <Route path="users/update/:id" element={<UpdateUser />} />
+            <Route
+              path="areas/:id/equipments"
+              element={<EquipmentDashboard />}
+            />
+            <Route
+              path="areas/:id/equipments/register"
+              element={<RegisterEquipment />}
+            />
+            <Route path="equipments/:id" element={<EquipmentDetails />} />
           </Route>
         </Routes>
       </AuthProvider>

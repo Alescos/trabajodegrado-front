@@ -1,10 +1,13 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-shadow */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../Hooks/useAuth';
-import { createUser } from '../../Services/user.service';
+import useAuth from '../../../Hooks/useAuth';
+import { getAllAreas } from '../../../Services/area.service';
+import { createUser } from '../../../Services/user.service';
 import './RegisterUser.scss';
 
 function RegisterUser() {
@@ -15,7 +18,10 @@ function RegisterUser() {
   const [identical, setIdentical] = useState(false);
   const [passwordError, setPasswordErr] = useState('');
   const [area, setArea] = useState('');
+  const [areas, setAreas] = useState<object[]>([]);
   const auth = useAuth();
+  const { user } = auth;
+  const { organization } = user;
 
   const uppercaseRegExp = /(?=.*?[A-Z])/;
   const lowercaseRegExp = /(?=.*?[a-z])/;
@@ -87,15 +93,15 @@ function RegisterUser() {
   }, [passwordInput]);
 
   async function register() {
-    const { user } = auth;
-    const { organization } = user.data;
     const password = passwordInput.firstPassword;
+    const role = 0;
     const newUser = {
       email,
       name,
       phone,
       password,
       organization,
+      role,
     };
     try {
       createUser(newUser).then(() => {
@@ -104,53 +110,46 @@ function RegisterUser() {
     } catch (error) {
       console.log(error);
     }
-    /* try {
-      const res = await fetch('http://localhost:8000/users/register', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      }).then(() => {
-        navigate('/login');
-      });
-    } catch (error) {
-      console.error(error);
-    } */
   }
 
+  useEffect(() => {
+    getAllAreas(organization).then((value) => {
+      const data: object[] = value;
+      console.log(data);
+      setAreas(data);
+    });
+  }, []);
   return (
     <div className="register-user">
       <div className="register-user__container">
         <form className="register-user__form" action="" method="post">
           <h1 className="title">Registro de usuario</h1>
           <div className="name">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="registerUser_name" className="form-label">
               Nombre completo
             </label>
             <input
               type="text"
               className="form-control"
-              id="exampleFormControlInput1"
+              id="registerUser_name"
               placeholder="Nombre completo"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="register-email">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="registerUser_email" className="form-label">
               Correo Electronico
             </label>
             <input
               type="text"
               className="form-control"
-              id="exampleFormControlInput1"
+              id="registerUser_email"
               placeholder="name@example.com"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="register-password">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="registerUser_password" className="form-label">
               Contraseña
             </label>
             <input
@@ -158,13 +157,17 @@ function RegisterUser() {
               type="password"
               placeholder="Contraseña"
               aria-label="default input example"
+              id="registerUser_password"
               name="firstPassword"
               onChange={inputChange}
             />
             <p className="text-danger">{passwordError}</p>
           </div>
           <div className="register-confirmPassword">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label
+              htmlFor="registerUser_confirmPassword"
+              className="form-label"
+            >
               Confirmar contraseña
             </label>
             <input
@@ -172,12 +175,13 @@ function RegisterUser() {
               type="password"
               placeholder="Confirmar contraseña"
               aria-label="default input example"
+              id="registerUser_confirmPassword"
               name="secondPassword"
               onChange={inputChange}
             />
           </div>
           <div className="phone">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="registerUser_phone" className="form-label">
               Número telefónico
             </label>
             <input
@@ -185,35 +189,45 @@ function RegisterUser() {
               type="number"
               placeholder="Celular"
               aria-label="default input example"
+              id="registerUser_phone"
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
           <div className="area-field">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="registerUser_area" className="form-label">
               Área perteneciente
             </label>
-            <input
+            <select
               className="form-control"
-              type="text"
-              placeholder="Area a la que pertenece"
-              aria-label="Area en la que trabaja el usuario"
+              id="registerUser_area"
+              name="registerUser_area"
               onChange={(e) => setArea(e.target.value)}
-            />
+            >
+              {areas.map((area: any, index: number) => (
+                <option key={index} value={area.name} aria-label={area.name}>
+                  {area.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="saveButton">
-            <Button
+            <button
               type="button"
+              className="custome_btn"
               onClick={register}
-              variant="info"
               disabled={!identical}
             >
               Registar
-            </Button>
+            </button>
           </div>
           <div className="backButton">
-            <Button type="button" variant="info" onClick={() => navigate(-1)}>
+            <button
+              type="button"
+              className="custome_btn"
+              onClick={() => navigate(-1)}
+            >
               Volver
-            </Button>
+            </button>
           </div>
         </form>
       </div>

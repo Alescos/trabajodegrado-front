@@ -28,7 +28,7 @@ export const login = async (email: string, password: string) => {
       return response.json();
     });
     const data = JSON.stringify(res.data);
-    sessionStorage.setItem('user', data);
+    // sessionStorage.setItem('user', data);
     localStorage.setItem('user', data);
     return res;
   } catch (error) {
@@ -37,5 +37,5 @@ export const login = async (email: string, password: string) => {
 };
 
 export const logout = () => {
-  localStorage.removeItem('user');
+  sessionStorage.removeItem('user');
 };

@@ -1,6 +1,5 @@
 /* eslint-disable comma-dangle */
 import { Outlet } from 'react-router-dom';
-// import NavBar from './components/NavBar/NavBar';
 import { useState } from 'react';
 import { MenuOutline } from 'react-ionicons';
 import Navigation from './components/Navigation/Navigation';

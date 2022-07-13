@@ -1,0 +1,74 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.updateUser_body {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.updateUser_card {
+  display: flex;
+  gap: 2.5rem;
+  width: 35%;
+  margin-bottom: 1.75rem;
+  flex-direction: column;
+}
+
+.updateUser_card_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  background-clip: border-box;
+  border-radius: 0.625rem;
+  border: 0;
+  box-shadow: 0px 0px 20 px 0px rgba(75, 87, 125, 0.02);
+  padding: 1rem;
+}
+
+.card_information {
+  margin-bottom: 0.8rem;
+}
+
+.card_image_header {
+  justify-content: center;
+}
+.card_image_title {
+  text-align: center;
+  color: $font-color;
+}
+
+.card_image_body img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.updateUser_body_content {
+  padding: 0.8rem;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  width: 65%;
+  min-width: 55%;
+  min-height: 80vh;
+  max-height: 85vh;
+}
+
+.updateUser_body_content_title {
+  color: $font-color;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.updateUser_body_userInformation {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.btn_updateUser {
+  margin: 1.5rem;
+}

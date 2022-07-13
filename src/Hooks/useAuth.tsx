@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-no-constructed-context-values */
@@ -26,11 +27,14 @@ export default useAuth;
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
+  const session = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user') as string)
+    : null;
+  const [user, setUser] = useState(session);
 
   const signin = (user: any, callback: VoidFunction) => {
+    // localStorage.setItem('user', user);
     setUser(user);
-    localStorage.setItem('user', user);
     setIsAuthenticated(true);
     callback();
   };

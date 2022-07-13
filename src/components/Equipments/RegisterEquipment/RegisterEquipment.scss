@@ -1,0 +1,60 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.registerEquipment_content {
+  display: grid;
+  gap: 2.5rem;
+  margin: 1rem 1.5rem;
+}
+
+.registerEquipment_mainContent {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.registerEquipment_form {
+  background-color: $white-color;
+  width: 80%;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr;
+  gap: 1rem;
+  grid-template-rows: 10% 20% 20% 20% 20%;
+}
+
+.registerEquipment_form_title {
+  grid-column: 1/4;
+}
+
+.registerEquipment_form h3 {
+  text-align: center;
+  color: $font-color;
+  margin-bottom: 1.5rem;
+  font-size: calc(1.5rem + 0.9vh);
+}
+
+#card_information_name,
+#card_information_branch,
+#card_information_model,
+#card_information_area {
+  grid-column: 1 / 2;
+}
+
+#card_information_type,
+#card_information_serial,
+#card_information_alias,
+#card_information_purchase {
+  grid-column: 3 / 4;
+}
+#card_information_name,
+#card_information_type {
+  grid-row: 2 / 3;
+}
+#card_information_branch,
+#card_information_serial {
+  grid-row: 3 / 4;
+}
+#card_information_area,
+#card_information_purchase {
+  grid-row: 4 / 5;
+}

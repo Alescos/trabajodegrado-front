@@ -11,7 +11,6 @@ const token: string = authHeader();
 const API_URL = 'http://localhost:8000/users/';
 
 export const createUser = async (user: UserInput) => {
-  // const token: string = authHeader();
   const res = await fetch(`${API_URL}register`, {
     method: 'POST',
     headers: {
@@ -36,7 +35,9 @@ export const getAllUsers = async (id: number) => {
     .then((response) => response.json())
     .then((res) => {
       const { data } = res;
+      console.log(data);
       return data;
     });
+  console.log(users);
   return users;
 };

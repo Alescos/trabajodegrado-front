@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 //@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap');
-
-$background-color: #78ddee;
+@import '/src/Assets/Styles/Variables.scss';
+/* $background-color: $background-color;
 $font-color: #78ddee;
 $size-sm: 2px;
 $size-md: 5px;
-$shadow-color: #c6c2c1;
+$shadow-color: #c6c2c1; */
 * {
   margin: 0px;
   padding: 0px;
@@ -15,6 +15,26 @@ body::-webkit-scrollbar {
 }
 #root {
   height: 100vh;
+}
+.custome_btn {
+  padding: calc(0.55rem +1px) calc(1.25rem + 1px);
+  box-shadow: none;
+  color: #ffffff;
+  background-color: $background-color;
+  width: 8rem;
+  border-color: transparent;
+  border-radius: 0.25rem;
+}
+.custome_btn:hover:not([disabled]) {
+  background-color: $background-color2;
+}
+.required::after {
+  content: '*';
+  position: relative;
+  font-size: inherit;
+  color: #f1416c;
+  padding-left: 0.25rem;
+  font-weight: bold;
 }
 
 @media (prefers-reduced-motion: no-preference) {

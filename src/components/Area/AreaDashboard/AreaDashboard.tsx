@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/no-array-index-key */
@@ -9,16 +10,17 @@ import { AddCircleOutline } from 'react-ionicons';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import { getAllAreas } from '../../../Services/area.service';
-import AreaCard from '../AreaCard/AreaCard';
+import ItemCard from '../../ItemCard/ItemCard';
+import NavBar from '../../NavBar/NavBar';
 import './AreaDashboard.scss';
 
-type inputData = {
+/* type inputData = {
   id: number;
   name: string;
   description: string;
   phone: string;
   createdAt: string;
-};
+}; */
 
 function Area() {
   const [areas, setAreas] = useState<object[]>([]);
@@ -27,18 +29,19 @@ function Area() {
   useEffect(() => {
     const { user } = auth;
     if (user !== undefined) {
-      getAllAreas(user.data.organization).then((value) => {
+      getAllAreas(user.organization).then((value) => {
         const data: object[] = value;
         setAmount(data.length);
         setAreas(data);
       });
     }
   }, []);
+
   return (
     <div className="area">
+      <NavBar name="Administración de Areas" nameButton="Agregar" />
       <div className="area_header">
         <h1 className="area_header-title">
-          Administración de Areas
           <span className="area_header-information">
             Tienes actualmente
             <span className="area_header-active-information">
@@ -55,8 +58,10 @@ function Area() {
       </div>
       <div className="area_content">
         {areas.length > 0 &&
-          areas.map((area: object, index) => (
-            <AreaCard key={index} {...area} />
+          areas.map((area: any, index) => (
+            <Link to={`${area.id}/equipments`}>
+              <ItemCard key={index} {...area} />
+            </Link>
           ))}
       </div>
     </div>

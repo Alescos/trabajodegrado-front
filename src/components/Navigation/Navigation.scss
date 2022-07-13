@@ -60,12 +60,12 @@ body {
   width: 100%;
   display: flex;
   text-decoration: none;
-  color: $font-color;
+  color: $white-color;
 }
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-  color: white;
+  color: $font-color;
 }
 
 .navigation ul li a .icon {

@@ -1,0 +1,91 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.toggleButton_container {
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.625rem;
+  background-color: $white-color;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  width: 100%;
+  min-height: 100px;
+}
+.toggleButton_container h3 {
+  color: $font-color;
+  text-align: center;
+  width: 80%;
+  font-size: calc(0.9rem + 1.5vh);
+  margin: 0;
+  margin-top: 0.5rem;
+}
+.toggleButton {
+  text-align: center;
+}
+.toggleButton_switch {
+  position: relative;
+  width: 50px;
+  display: inline-block;
+  text-align: left;
+  top: 8px;
+}
+.checkbox {
+  display: none;
+}
+.label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+}
+.inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.inner:before,
+.inner:after {
+  float: right;
+  width: 50%;
+  height: 25px;
+  padding: 0;
+  line-height: 25px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.inner::after {
+  content: ' ';
+  padding-left: 10px;
+  background-color: rgb(118, 232, 118);
+  color: #fff;
+}
+.inner::before {
+  content: ' ';
+  padding-right: 10px;
+  background-color: #bbb;
+  color: #fff;
+  text-align: right;
+}
+.switch {
+  display: block;
+  width: 15px;
+  margin: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 25px;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+.checkbox:checked + .label .inner {
+  margin-left: 0;
+}
+.checkbox:checked + .label .switch {
+  right: 0px;
+}

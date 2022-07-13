@@ -17,7 +17,7 @@ type userData = {
 function UserDashboard() {
   const [users, setUsers] = useState<object[]>([]);
   const auth = useAuth();
-  const id = auth.user.data.organization;
+  const id = auth.user.organization;
   useEffect(() => {
     getAllUsers(id).then((res: object[]) => {
       setUsers(res);
@@ -48,7 +48,7 @@ function UserDashboard() {
             placeholder="Buscar"
           />
           <button type="button">Filtrar</button>
-          <Link to="/register/user">Registrar usuario</Link>
+          <Link to="/users/register">Registrar usuario</Link>
         </div>
         <div className="userDashboard_content-table">
           <table>
@@ -57,7 +57,7 @@ function UserDashboard() {
                 <th>Correo</th>
                 <th>Nombre</th>
                 <th>Rol</th>
-                <th>Estado</th>
+                <th>Area</th>
                 <th>Fecha de creacion</th>
                 <th>Acciones</th>
               </tr>
@@ -67,13 +67,13 @@ function UserDashboard() {
                 <tr key={index}>
                   <td>{user.email}</td>
                   <td>{user.name}</td>
-                  <td>{user.name}</td>
-                  <td>{user.name}</td>
+                  <td>{user.role === 0 ? 'Usuario' : 'Administrador'}</td>
+                  <td>{user.role === 1 ? 'Todas' : 'Area de prueba'}</td>
                   <td>{user.createdAt.split('T')[0]}</td>
                   <td className="table_column_actions">
                     <ul>
                       <li>
-                        <Link to="/">Editar</Link>
+                        <Link to={`update/${user.id}`}>Editar</Link>
                       </li>
                       <li>
                         <Link to="/">Eliminar</Link>

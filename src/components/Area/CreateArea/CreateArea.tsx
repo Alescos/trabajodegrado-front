@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable comma-dangle */
 import { useEffect, useState } from 'react';
-import { CreateOutline } from 'react-ionicons';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import { createArea } from '../../../Services/area.service';
+import ImageCard from '../../ImageCard/ImageCard';
+import NavBar from '../../NavBar/NavBar';
 import './CreateArea.scss';
 
 function RegisterArea() {
@@ -13,11 +15,12 @@ function RegisterArea() {
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState(true);
   const [organization, setOrganization] = useState(0);
+  const [file, setFile] = useState(null);
   const auth = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     const { user } = auth;
-    setOrganization(Number(user.data.organization));
+    setOrganization(Number(user.organization));
   }, [auth]);
 
   async function register() {
@@ -46,7 +49,7 @@ function RegisterArea() {
   };
   return (
     <div className="register_area">
-      <div className="toolbar">
+      {/* <div className="toolbar">
         <div className="toolbar_menu">
           <div className="toolbar_menu_options">
             <h1 className="toolbar_title">Creación de area</h1>
@@ -59,7 +62,7 @@ function RegisterArea() {
                 <Link to="/users">Usuarios</Link>
               </li>
               <li>
-                <Link to="/area">volver</Link>
+                <Link to="/areas">volver</Link>
               </li>
             </ul>
           </div>
@@ -67,11 +70,17 @@ function RegisterArea() {
             Crear
           </button>
         </div>
-      </div>
+      </div> */}
+      <NavBar
+        name="Crear Área"
+        nameButton="Crear"
+        Handler={register}
+        activeButton
+      />
       <div className="card_area">
         <div className="card_area_margin">
           <div className="card_area_content">
-            <div className="card_area_left">
+            {/* <div className="card_area_left">
               <div className="card_image_area">
                 <div className="card_image_header">
                   <div className="card_image_title">
@@ -124,7 +133,8 @@ function RegisterArea() {
                   </select>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <ImageCard title="Distintivo del area" setFile={setFile} />
             <div className="card_body">
               <div className="card_body_container">
                 <div className="card_body_content">

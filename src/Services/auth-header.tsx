@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 function authHeader() {
-  const userStr = sessionStorage.getItem('user');
+  const userStr = localStorage.getItem('user');
   let user = null;
   let token = '';
   if (userStr) user = JSON.parse(userStr);
