@@ -1,0 +1,25 @@
+.equipmentDetails_card {
+  margin: 1.5rem 2.5rem;
+}
+
+.equipmentDetails_card-content {
+  background-color: white;
+}
+
+.form-control.form-control-solid {
+  background-color: #e4e5ef;
+  border-color: #e4e5ef;
+  color: #5e6278;
+  transition: color 0.2s ease;
+}
+
+.row label {
+  text-align: center;
+}
+.EquipmentDetails_input:focus {
+  box-shadow: 0 0 0 0;
+}
+
+.EquipmentDetails_input:hover {
+  cursor: default;
+}

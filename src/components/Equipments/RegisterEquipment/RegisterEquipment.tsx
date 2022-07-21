@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-no-bind */
@@ -7,13 +8,16 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-useless-escape */
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { CreateOutline } from 'react-ionicons';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import image from '../../../Assets/Images/EquipmentImages/ImageDevice.png';
 import useAuth from '../../../Hooks/useAuth';
-import { getAllAreas } from '../../../Services/area.service';
-import { registerEquipment } from '../../../Services/equipment.service';
-import ImageCard from '../../ImageCard/ImageCard';
+import { getAreaById } from '../../../Services/area.service';
+import {
+  registerEquipment,
+  uploadFile,
+} from '../../../Services/equipment.service';
 import NavBar from '../../NavBar/NavBar';
 import ToggleButton from '../../ToggleButton/ToggleButton';
 import './RegisterEquipment.scss';
@@ -21,6 +25,13 @@ import './RegisterEquipment.scss';
 function RegisterEquipment() {
   const styles = {
     backgroundImage: `url('${image}')`,
+  };
+
+  type Area = {
+    name: string;
+    description: string;
+    phone: string;
+    organization: string;
   };
   const auth = useAuth();
   const navigate = useNavigate();
@@ -35,16 +46,14 @@ function RegisterEquipment() {
   const [classEquipment, setClassEquipment] = useState('');
   const [history, setClassHistory] = useState('');
   const [area, setArea] = useState('');
-  const [file, setFile] = useState(null);
-  const [areas, setAreas] = useState<object[]>([]);
+  const [file, setFile] = useState<any>(null);
+  const [nameArea, setNameArea] = useState('');
   const { organization } = auth.user;
   const data = new FormData();
+  const { id } = useParams();
 
   async function createEquipment() {
-    data.append('image', file!);
-    console.log('Archivo cargado...');
-    console.log(file!);
-    console.log(data);
+    data.append('images', file!);
     const newEquipment = {
       name,
       branch,
@@ -57,23 +66,23 @@ function RegisterEquipment() {
       classEquipment,
       history,
       area,
-      data,
     };
-    registerEquipment(newEquipment);
-    // console.log(formData.getAll);
 
-    /* try {
-      registerEquipment(newEquipment).then(() => navigate(-1));
+    try {
+      console.log(file);
+      uploadFile(id!, data).then(() => {
+        setFile(null);
+      });
+      registerEquipment(newEquipment);
     } catch (error) {
       console.log(error);
-    } */
+    }
   }
-
   useEffect(() => {
-    getAllAreas(organization).then((value) => {
-      const data: object[] = value;
-      console.log(data);
-      setAreas(data);
+    getAreaById(id!).then((value) => {
+      const data: Area = value;
+      setNameArea(data.name);
+      setArea(id!);
     });
   }, []);
 
@@ -88,7 +97,38 @@ function RegisterEquipment() {
       <div className="registerEquipment_content">
         <div className="registerEquipment_mainContent">
           <div className="registerEquipment_leftCard">
-            <ImageCard title="Imagen" styles={styles} setFile={setFile} />
+            {/* <ImageCard title="Imagen" styles={styles} setFile={setFile} /> */}
+            <div className="imageCard">
+              <div className="imageCard_content">
+                <div className="imageCard_header">
+                  <div className="imageCard_title">
+                    <h2>Imagen</h2>
+                  </div>
+                </div>
+                <div className="imageCard_body">
+                  <div className="imageCard_input">
+                    <div className="image_wrapper" />
+                    <label htmlFor="imageCard_input_image">
+                      <i>
+                        <CreateOutline />
+                      </i>
+                      <input
+                        type="file"
+                        className="imageCard_input_image form-control"
+                        accept=".png, .jpg"
+                        id="imageCard_input_image"
+                        onChange={(e) => {
+                          setFile(e.target.files![0]);
+                        }}
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div className="imageCard_description">
+                  <p>Definir la imagen del area</p>
+                </div>
+              </div>
+            </div>
             <ToggleButton status="Estado" setStatus={setStatus} />
           </div>
           <div className="registerEquipment_form">
@@ -186,7 +226,17 @@ function RegisterEquipment() {
               <label htmlFor="equipmentInformation_area" className="form-label">
                 Area
               </label>
-              <select
+              <input
+                type="text"
+                className="form-control"
+                name="registerUser_area"
+                id="equipmentInformation_area"
+                placeholder=""
+                value={nameArea}
+                disabled
+                readOnly
+              />
+              {/*  <select
                 className="form-control"
                 id="equipmentInformation_area"
                 name="registerUser_area"
@@ -197,7 +247,7 @@ function RegisterEquipment() {
                     {area.name}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </div>
             <div className="card_information" id="card_information_purchase">
               <label

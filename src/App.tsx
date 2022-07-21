@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import AreaDashboard from './components/Area/AreaDashboard/AreaDashboard';
 import CreateArea from './components/Area/CreateArea/CreateArea';
+import Dashboard from './components/Dashboard/Dashboard';
 import EquipmentDashboard from './components/Equipments/EquipmentDashboard/EquipmentDashboard';
 import EquipmentDetails from './components/Equipments/EquipmentDetails/EquipmentDetails';
 import RegisterEquipment from './components/Equipments/RegisterEquipment/RegisterEquipment';
@@ -33,7 +34,7 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/" element={<AreaDashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="organization" element={<Organization />} />
             <Route path="users" element={<UserDashboard />} />
             <Route path="users/register" element={<RegisterUser />} />

@@ -30,9 +30,22 @@ export const getAllAreas = async (id: string) => {
   return areas;
 };
 
+export const getAreaById = async (id: string) => {
+  const token = await authHeader();
+
+  const area = await fetch(`${API_URL}${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((res) => res.json());
+  return area;
+};
+
 export const createArea = async (area: AreaInput) => {
   const token = await authHeader();
-  // console.log(token);
   const res = await fetch(`${API_URL}register`, {
     method: 'POST',
     headers: {

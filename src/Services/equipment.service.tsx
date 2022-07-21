@@ -30,7 +30,7 @@ export const registerEquipment = async (equipment: any) => {
   });
 };
 
-export const getAllEquipments = async (id: number) => {
+export const getAllEquipments = async (id: string) => {
   const equipments: object[] = await fetch(`${API_URL}getAll/${id}`, {
     method: 'GET',
     headers: {
@@ -45,4 +45,28 @@ export const getAllEquipments = async (id: number) => {
       return data;
     });
   return equipments;
+};
+
+export const getEquipmentById = async (id: string) => {
+  const equipment: object[] = await fetch(`${API_URL}/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((response) => response.json());
+  return equipment;
+};
+
+export const uploadFile = async (id: string, file: FormData) => {
+  console.log(file);
+  console.log(file.get('images'));
+  const res = await fetch(`${API_URL}${id}/images`, {
+    method: 'POST',
+    headers: {
+      authorization: token,
+    },
+    body: file,
+  }).then((response) => console.log(response));
 };

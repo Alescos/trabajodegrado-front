@@ -59,7 +59,11 @@ function Area() {
       <div className="area_content">
         {areas.length > 0 &&
           areas.map((area: any, index) => (
-            <Link to={`${area.id}/equipments`}>
+            <Link
+              key={index}
+              to={`${area.id}/equipments`}
+              className="areaDashboard_card"
+            >
               <ItemCard key={index} {...area} />
             </Link>
           ))}

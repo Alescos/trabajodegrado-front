@@ -18,6 +18,9 @@ function RegisterArea() {
   const [file, setFile] = useState(null);
   const auth = useAuth();
   const navigate = useNavigate();
+  const formData = new FormData();
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  formData.append('image', file!);
   useEffect(() => {
     const { user } = auth;
     setOrganization(Number(user.organization));
@@ -31,12 +34,12 @@ function RegisterArea() {
       phone,
       status,
       organization,
+      formData,
     };
     createArea(newArea).then(() => {
       navigate(-1);
     });
   }
-
   const handleStatus: (event: React.ChangeEvent<HTMLSelectElement>) => void = (
     event
   ) => {

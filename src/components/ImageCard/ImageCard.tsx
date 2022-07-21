@@ -35,7 +35,7 @@ function ImageCard({ ...props }: propTypes) {
               <input
                 type="file"
                 className="imageCard_input_image form-control"
-                name="avatar"
+                name="images"
                 accept=".png, .jpg"
                 id="imageCard_input_image"
                 onChange={(e) => {
