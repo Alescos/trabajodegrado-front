@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable object-curly-newline */
 function authHeader() {
   const userStr = localStorage.getItem('user');
-  let user = null;
+  let user: any = null;
   let token = '';
   if (userStr) user = JSON.parse(userStr);
   if (user && user.token) {

@@ -1,9 +1,45 @@
 @import '/src/Assets/Styles/Variables.scss';
 
+.equipmentDashboard_areaDetails {
+  display: flex;
+  gap: 3rem;
+  margin: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+}
+.equipmentsDashboard_header_list {
+  display: flex;
+  gap: 2.5rem;
+  width: 60%;
+}
+.equipmentsDashboard_header_list h4 {
+  width: 35%;
+  font-weight: 600;
+  // color: $font-color;
+}
+.equipmentDashboard_areaDetails ul {
+  list-style: none;
+  margin: 0;
+  justify-content: center;
+  width: 40%;
+}
+.equipmentDashboard_list_content {
+  color: #a1a5b7;
+}
+.equipmentDashboard_areaDetails_description {
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+}
+.equipmentDashboard_areaDetails_description p {
+  margin: 0;
+}
+
 .equipmentDashboard_header {
   margin: 1.5rem 0.5rem;
   display: flex;
-  height: 10vh;
+  min-height: 10vh;
   padding: 0.5rem;
   align-items: center;
   justify-content: space-between;

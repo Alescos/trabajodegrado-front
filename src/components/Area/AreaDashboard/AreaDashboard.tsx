@@ -25,6 +25,7 @@ import './AreaDashboard.scss';
 function Area() {
   const [areas, setAreas] = useState<object[]>([]);
   const [amountAreas, setAmount] = useState(0);
+  const [area, setArea] = useState(null);
   const auth = useAuth();
   useEffect(() => {
     const { user } = auth;
@@ -57,16 +58,19 @@ function Area() {
         </div>
       </div>
       <div className="area_content">
-        {areas.length > 0 &&
-          areas.map((area: any, index) => (
+        {areas.length > 0 ? (
+          areas.map((item: any, index) => (
             <Link
               key={index}
-              to={`${area.id}/equipments`}
+              to={`${item.id}/equipments`}
               className="areaDashboard_card"
             >
-              <ItemCard key={index} {...area} />
+              <ItemCard key={index} {...item} />
             </Link>
-          ))}
+          ))
+        ) : (
+          <span />
+        )}
       </div>
     </div>
   );

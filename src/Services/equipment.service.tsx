@@ -18,7 +18,6 @@ const token: string = authHeader();
 const API_URL = 'http://localhost:8000/equipments/';
 
 export const registerEquipment = async (equipment: any) => {
-  console.log(equipment);
   const res = await fetch(`${API_URL}register`, {
     method: 'POST',
     headers: {
@@ -27,7 +26,8 @@ export const registerEquipment = async (equipment: any) => {
       authorization: token,
     },
     body: JSON.stringify(equipment),
-  });
+  }).then((response) => response.json());
+  return res;
 };
 
 export const getAllEquipments = async (id: string) => {
@@ -59,14 +59,14 @@ export const getEquipmentById = async (id: string) => {
   return equipment;
 };
 
-export const uploadFile = async (id: string, file: FormData) => {
-  console.log(file);
-  console.log(file.get('images'));
-  const res = await fetch(`${API_URL}${id}/images`, {
+export const uploadFile = async (area: string, id: string, file: FormData) => {
+  const res = await fetch(`${API_URL}/${area}/${id}/images`, {
     method: 'POST',
     headers: {
       authorization: token,
     },
     body: file,
-  }).then((response) => console.log(response));
+  }).then((response) => response.json());
+  console.log(res);
+  return res;
 };

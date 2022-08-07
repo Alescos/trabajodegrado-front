@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
-import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { MenuOutline } from 'react-ionicons';
+import { Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import './Layout.scss';
 
