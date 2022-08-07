@@ -72,16 +72,16 @@ function RegisterEquipment() {
         classEquipment,
         area,
       };
-      registerEquipment(newEquipment).then((res) => {
-        if (image != null) {
-          console.log('Subiendo imagen');
-          console.log(res.id);
-          uploadFile(id!, res.id!, data).then((response) => {
-            setImage(null);
-            console.log(res);
-          });
-        }
-      });
+      registerEquipment(newEquipment)
+        .then((res) => {
+          if (image != null) {
+            console.log('Subiendo imagen');
+            uploadFile(id!, res.id!, data).then(() => {
+              setImage(null);
+            });
+          }
+        })
+        .then(() => navigate(-1));
       // const res = await registerEquipment(newEquipment);
     } catch (error) {
       console.log(error);
