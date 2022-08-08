@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import {
   BusinessOutline,
+  ChatboxEllipsesOutline,
   ExitOutline,
   PeopleOutline,
   PulseOutline,
@@ -56,6 +57,14 @@ function Navigation(props: Props) {
               <PulseOutline />
             </span>
             <span className="title">Areas</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/reports">
+            <span className="icon">
+              <ChatboxEllipsesOutline />
+            </span>
+            <span className="title">Reportes</span>
           </Link>
         </li>
         <li>

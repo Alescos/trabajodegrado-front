@@ -57,9 +57,6 @@ function RegisterEquipment() {
     data.append('images', image!);
     console.log(image);
     try {
-      /* if (image === null) {
-        setImage('');
-      } */
       const newEquipment = {
         name,
         branch,
@@ -82,7 +79,6 @@ function RegisterEquipment() {
           }
         })
         .then(() => navigate(-1));
-      // const res = await registerEquipment(newEquipment);
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +102,6 @@ function RegisterEquipment() {
       <div className="registerEquipment_content">
         <div className="registerEquipment_mainContent">
           <div className="registerEquipment_leftCard">
-            {/* <ImageCard title="Imagen" styles={styles} setFile={setFile} /> */}
             <div className="imageCard">
               <div className="imageCard_content">
                 <div className="imageCard_header">

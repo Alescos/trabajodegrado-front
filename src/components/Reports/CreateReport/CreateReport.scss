@@ -1,0 +1,51 @@
+@import '/src/Assets/Styles/Variables.scss';
+.CreateReport_body {
+  margin: 1rem;
+  background-color: $white-color;
+  border-radius: 0.625rem;
+}
+
+.CreateReport_form {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 3fr 0.5fr 3fr;
+  gap: 1rem;
+  grid-template-rows: 20% 20% 20% 20%;
+}
+
+#CreateReport_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#CreateReport_inputField_user,
+#CreateReport_inputField_date,
+#CreateReport_inputField_priority,
+#CreateReport_inputField_type {
+  grid-column: 1/2;
+}
+
+#CreateReport_inputField_area,
+#CreateReport_inputField_equipment,
+#CreateReport_inputField_description,
+#CreateReport_button {
+  grid-column: 3/4;
+}
+
+#CreateReport_inputField_area,
+#CreateReport_inputField_user {
+  grid-row: 1/2;
+}
+#CreateReport_inputField_type,
+#CreateReport_inputField_equipment {
+  grid-row: 2/3;
+}
+#CreateReport_inputField_date,
+#CreateReport_inputField_description {
+  grid-row: 3/4;
+}
+#CreateReport_inputField_priority,
+#CreateReport_button {
+  grid-row: 4/5;
+}

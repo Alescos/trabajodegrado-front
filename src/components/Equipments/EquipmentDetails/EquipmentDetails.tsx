@@ -5,21 +5,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getAreaById } from '../../../Services/area.service';
 import { getEquipmentById } from '../../../Services/equipment.service';
 import ImageCard from '../../ImageCard/ImageCard';
 import NavBar from '../../NavBar/NavBar';
-import ToggleButton from '../../ToggleButton/ToggleButton';
 import './EquipmentDetails.scss';
 
 function EquipmentDetails() {
   const [file, setFile] = useState('');
   const { id } = useParams();
   const [status, setStatus] = useState(true);
+  const [area, setArea] = useState('');
   const [equipment, setEquipment] = useState<any>({});
   useEffect(() => {
     getEquipmentById(id!).then((data) => {
       setEquipment(data);
       setStatus(equipment.status);
+    });
+    getAreaById(equipment.area).then((data) => {
+      setArea(data.name);
     });
   }, []);
 
@@ -43,19 +47,6 @@ function EquipmentDetails() {
                 <div className="col-lg-7">
                   <ImageCard title=" " setFile={setFile} />
                 </div>
-              </div>
-              <div className="row mb-2">
-                <label
-                  className="col-lg-3 col-form-label fw-semibold"
-                  htmlFor=""
-                />
-                <div className="col-md-5">
-                  <ToggleButton status="Estado" setStatus={setStatus} />
-                </div>
-                <label
-                  className="col-lg-3 col-form-label fw-semibold"
-                  htmlFor=""
-                />
               </div>
               <div className="row mb-6">
                 <label
@@ -189,7 +180,7 @@ function EquipmentDetails() {
                     type="text"
                     className="EquipmentDetails_input form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                     placeholder="Area del equipo"
-                    value={`${equipment.area}`}
+                    value={`${area}`}
                   />
                 </div>
                 <label

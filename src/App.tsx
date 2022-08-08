@@ -14,6 +14,8 @@ import RegisterEquipment from './components/Equipments/RegisterEquipment/Registe
 import Login from './components/Login/Login';
 import Organization from './components/Organization/Organization';
 import ProtectedRoute from './components/ProtectedRoute';
+import CreateReport from './components/Reports/CreateReport/CreateReport';
+import ReportDashboard from './components/Reports/ReportDashboard/ReportDashboard';
 import RegisterUser from './components/Users/RegisterUser/RegisterUser';
 import UpdateUser from './components/Users/UpdateUser/UpdateUser';
 import UserDashboard from './components/Users/UserDashboard/UserDashboard';
@@ -50,6 +52,8 @@ function App() {
               element={<RegisterEquipment />}
             />
             <Route path="equipments/:id" element={<EquipmentDetails />} />
+            <Route path="reports/" element={<ReportDashboard />} />
+            <Route path="reports/register" element={<CreateReport />} />
           </Route>
         </Routes>
       </AuthProvider>
