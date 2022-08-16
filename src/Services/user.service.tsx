@@ -35,9 +35,7 @@ export const getAllUsers = async (id: number) => {
     .then((response) => response.json())
     .then((res) => {
       const { data } = res;
-      console.log(data);
       return data;
     });
-  console.log(users);
   return users;
 };

@@ -45,7 +45,6 @@ export const getReportById = async (id: string) => {
 };
 
 export const createReport = async (report: ReportInput) => {
-  console.log(report);
   const token = await authHeader();
   const res = await fetch(`${API_URL}register`, {
     method: 'POST',
@@ -57,4 +56,18 @@ export const createReport = async (report: ReportInput) => {
     body: JSON.stringify(report),
   });
   return res;
+};
+
+export const getAmountReportsByArea = async (id: string) => {
+  const token = await authHeader();
+
+  const report = await fetch(`${API_URL}byArea/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((res) => res.json());
+  return report;
 };

@@ -1,0 +1,93 @@
+@import '/src/Assets/Styles/Variables.scss';
+
+.ReportDashboard_body {
+  margin: 1.5rem;
+}
+
+.ReportDashboard_header {
+  margin: 1.5rem;
+  background-color: white;
+  border-radius: 0.625rem;
+  height: 330px;
+}
+.ReportDashboard_body_table {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.625rem;
+  min-height: 70vh;
+}
+
+.ReportDashboard_item-information {
+  padding: 0.5rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 35% 35% 27%;
+  grid-template-rows: 30% 30% 30%;
+}
+
+.item-information_type,
+.item-information_priority,
+.item-information_reportDate {
+  grid-column: 1/2;
+}
+.item-information_equipment,
+.item-information_user,
+.item-information_area {
+  grid-column: 2/3;
+}
+
+.item-information_description {
+  grid-column: 3/4;
+}
+
+.item-information_type,
+.item-information_equipment {
+  grid-row: 1/2;
+}
+.item-information_area,
+.item-information_priority {
+  grid-row: 2/3;
+}
+.item-information_reportDate,
+.item-information_user {
+  grid-row: 3/4;
+}
+
+.item-information_description {
+  grid-row: 1/4;
+}
+
+.input_description {
+  height: 100%;
+  background-color: #e4e5ef;
+  padding: 1rem;
+  border-radius: 0.325rem;
+}
+
+.form-control-solid {
+  background-color: #e4e5ef;
+  border-color: #e4e5ef;
+  color: #5e6278;
+  transition: color 0.2s ease;
+}
+.ReportDashboard_input:hover {
+  box-shadow: 0 0 0 0;
+}
+
+.ReportDashboard_input:focus {
+  cursor: default;
+}
+
+.ReportDashboard_input:focus-visible {
+  border: none;
+  box-shadow: 0 0 0 0;
+}
+
+.UploadReportData {
+  border: none;
+  background-color: transparent;
+  color: $background-color2;
+}
+.UploadReportData:hover {
+  color: $backgroundMain-color;
+}

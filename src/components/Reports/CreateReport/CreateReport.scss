@@ -3,6 +3,7 @@
   margin: 1rem;
   background-color: $white-color;
   border-radius: 0.625rem;
+  height: 500px;
 }
 
 .CreateReport_form {
@@ -41,11 +42,19 @@
 #CreateReport_inputField_equipment {
   grid-row: 2/3;
 }
-#CreateReport_inputField_date,
-#CreateReport_inputField_description {
+#CreateReport_inputField_date {
   grid-row: 3/4;
 }
-#CreateReport_inputField_priority,
-#CreateReport_button {
+#CreateReport_inputField_priority {
   grid-row: 4/5;
+}
+#CreateReport_inputField_description {
+  grid-row: 3/5;
+}
+#CreateReport_button {
+  grid-row: 5/6;
+}
+#CreateReport_description {
+  height: 150px;
+  text-align: start;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -5,6 +6,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
+import { getAllAreas } from '../../../Services/area.service';
 import { getAllUsers } from '../../../Services/user.service';
 import './UserDashboard.scss';
 
@@ -16,12 +18,37 @@ type userData = {
 };
 function UserDashboard() {
   const [users, setUsers] = useState<object[]>([]);
+  const [areas, setAreas] = useState<object[]>([]);
+  const [names, setNames] = useState<string[]>([]);
+  const areaNames: string[] = [];
   const auth = useAuth();
   const id = auth.user.organization;
-  useEffect(() => {
-    getAllUsers(id).then((res: object[]) => {
-      setUsers(res);
+
+  const GetAreaName = () => {
+    users.forEach((user: any) => {
+      console.log('primer for');
+      areas.forEach((area: any) => {
+        if (user.areas.include(area.id)) {
+          areaNames.push(area.name);
+        }
+      });
     });
+    setNames(areaNames);
+    console.log(areaNames);
+  };
+  useEffect(() => {
+    getAllUsers(id)
+      .then((res: object[]) => {
+        setUsers(res);
+      })
+      .then(() => {
+        getAllAreas(id).then((res: object[]) => {
+          setAreas(res);
+        });
+      })
+      .then(() => {
+        GetAreaName();
+      });
   }, []);
 
   return (
@@ -68,7 +95,7 @@ function UserDashboard() {
                   <td>{user.email}</td>
                   <td>{user.name}</td>
                   <td>{user.role === 0 ? 'Usuario' : 'Administrador'}</td>
-                  <td>{user.role === 1 ? 'Todas' : 'Area de prueba'}</td>
+                  <td>{user.role === 1 ? 'Todas' : areaNames}</td>
                   <td>{user.createdAt.split('T')[0]}</td>
                   <td className="table_column_actions">
                     <ul>

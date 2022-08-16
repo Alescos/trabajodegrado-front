@@ -48,7 +48,7 @@ export const getAllEquipments = async (id: string) => {
 };
 
 export const getEquipmentById = async (id: string) => {
-  const equipment: object[] = await fetch(`${API_URL}/${id}`, {
+  const equipment: object = await fetch(`${API_URL}/${id}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import { getAllAreas } from '../../../Services/area.service';
-import { getAllEquipments } from '../../../Services/equipment.service';
+import {
+  getAllEquipments,
+  getEquipmentById,
+} from '../../../Services/equipment.service';
 import { createReport } from '../../../Services/report.service';
 import NavBar from '../../NavBar/NavBar';
 import './CreateReport.scss';
@@ -12,11 +15,13 @@ import './CreateReport.scss';
 function CreateReport() {
   const [areas, setAreas] = useState<object[]>();
   const [area, setArea] = useState('');
+  const [areaName, setAreaName] = useState('');
   const [user, setUser] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [priority, setPriority] = useState('');
   const [equipment, setEquipment] = useState('');
+  const [equipmentName, setEquipmentName] = useState('');
   const [reportDate, setReportDate] = useState('');
   const [active, setActive] = useState(false);
   const [equipments, setEquipments] = useState<object[]>();
@@ -42,32 +47,39 @@ function CreateReport() {
       description !== '' &&
       type !== '' &&
       priority !== '' &&
-      equipment !== '' &&
+      equipment !== null &&
       reportDate !== ''
     ) {
       setActive(true);
     }
   });
 
+  useEffect(() => {
+    getEquipmentById(equipment).then((data: any) => {
+      setEquipmentName(data.name);
+    });
+    console.log(areaName);
+  }, [equipment]);
+
   const handlerButton = () => {
+    console.log(areaName);
     const newReport = {
-      user,
-      area,
       equipment,
-      type,
-      priority,
-      description,
       reportDate,
       organization,
+      area,
+      areaName,
+      equipmentName,
+      user,
+      description,
+      type,
+      priority,
     };
     createReport(newReport).then(() => navigate(-1));
   };
   return (
     <div className="CreateReport">
       <NavBar name="Reportar Incidente" />
-      <div className="CreateReport_header">
-        <span>header</span>
-      </div>
       <div className="CreateReport_body">
         <form action="" method="post" className="CreateReport_form">
           <div
@@ -81,7 +93,11 @@ function CreateReport() {
               className="form-control"
               id="CreateReport_area"
               placeholder="Equipo"
-              onChange={(e) => setArea(e.target.value)}
+              onChange={(e) => {
+                setArea(e.target.value);
+                setAreaName(e.target.name);
+                console.log(areaName);
+              }}
             >
               <option value="">Seleccionar area</option>
               {Array.isArray(areas) ? (
@@ -109,7 +125,9 @@ function CreateReport() {
               className="form-control"
               id="CreateReport_equipment"
               placeholder="Equipo"
-              onChange={(e) => setEquipment(e.target.value)}
+              onChange={(e) => {
+                setEquipment(e.target.value);
+              }}
             >
               <option value="">Seleccionar Equipo</option>
               {Array.isArray(equipments) ? (
@@ -119,7 +137,7 @@ function CreateReport() {
                   </option>
                 ))
               ) : (
-                <option>Sin area</option>
+                <span />
               )}
             </select>
           </div>
@@ -162,13 +180,13 @@ function CreateReport() {
               htmlFor="CreateReport_description"
               className="form-label required"
             >
-              Desripción
+              Descripción
             </label>
             <input
-              type="text"
+              type="tex"
               className="form-control"
               id="CreateReport_description"
-              placeholder="Descripción del incidente"
+              placeholder=""
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>

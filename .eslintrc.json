@@ -41,6 +41,14 @@
         }
       }
     ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
     "react/function-component-definition": [
       2,
       {

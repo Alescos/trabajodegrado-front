@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable @typescript-eslint/no-explicit-any */
