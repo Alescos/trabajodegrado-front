@@ -16,7 +16,6 @@ export const getOrganization = async (id: number) => {
     })
       .then((res) => res.json())
       .then((data) => data);
-    // console.log(response);
     return response;
   } catch (error) {
     // console.error(error);

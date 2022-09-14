@@ -70,3 +70,16 @@ export const uploadFile = async (area: string, id: string, file: FormData) => {
   console.log(res);
   return res;
 };
+
+export const donwloadFile = async (id: string) => {
+  const res = await fetch(`${API_URL}downloadImage/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  });
+  console.log(res);
+  return res;
+};

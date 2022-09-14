@@ -48,8 +48,13 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid $font-color;
+  padding:0.3rem
 }
 
+.userDashboard_content_header-searchbar{
+  display:flex;
+  margin:0.5rem
+}
 .userDashboard_content-header #search-bar {
   width: 60%;
   border: solid $background-color;
@@ -155,4 +160,14 @@ th:first-child {
 
 .table_column_actions ul li a:hover {
   color: $background-color2;
+}
+
+@media (max-width: 600px) {
+  .userDashboard_content{
+    padding: 0.325rem;
+  }
+
+  .userDashboard_content-header{
+    display:block;
+  }
 }

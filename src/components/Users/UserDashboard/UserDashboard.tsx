@@ -4,9 +4,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
+import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
-import { getAllAreas } from '../../../Services/area.service';
 import { getAllUsers } from '../../../Services/user.service';
 import './UserDashboard.scss';
 
@@ -22,34 +22,13 @@ function UserDashboard() {
   const [names, setNames] = useState<string[]>([]);
   const areaNames: string[] = [];
   const auth = useAuth();
-  const id = auth.user.organization;
+  const { organization } = auth.user;
 
-  const GetAreaName = () => {
-    users.forEach((user: any) => {
-      console.log('primer for');
-      areas.forEach((area: any) => {
-        if (user.areas.include(area.id)) {
-          areaNames.push(area.name);
-        }
-      });
-    });
-    setNames(areaNames);
-    console.log(areaNames);
-  };
   useEffect(() => {
-    getAllUsers(id)
-      .then((res: object[]) => {
-        setUsers(res);
-      })
-      .then(() => {
-        getAllAreas(id).then((res: object[]) => {
-          setAreas(res);
-        });
-      })
-      .then(() => {
-        GetAreaName();
-      });
-  }, []);
+    getAllUsers(organization).then((res: object[]) => {
+      setUsers(res);
+    });
+  }, [organization]);
 
   return (
     <div className="userDashboard">
@@ -68,17 +47,19 @@ function UserDashboard() {
       </div>
       <div className="userDashboard_content">
         <div className="userDashboard_content-header">
-          <input
-            type="text"
-            name="search"
-            id="search-bar"
-            placeholder="Buscar"
-          />
-          <button type="button">Filtrar</button>
+          <div className="userDashboard_content_header-searchbar">
+            <input
+              type="text"
+              name="search"
+              id="search-bar"
+              placeholder="Buscar"
+            />
+            <button type="button">Filtrar</button>
+          </div>
           <Link to="/users/register">Registrar usuario</Link>
         </div>
         <div className="userDashboard_content-table">
-          <table>
+          <Table striped responsive>
             <thead className="userDashboard_table_header">
               <tr>
                 <th>Correo</th>
@@ -90,27 +71,28 @@ function UserDashboard() {
               </tr>
             </thead>
             <tbody>
-              {users.map((user: any, index: number) => (
-                <tr key={index}>
-                  <td>{user.email}</td>
-                  <td>{user.name}</td>
-                  <td>{user.role === 0 ? 'Usuario' : 'Administrador'}</td>
-                  <td>{user.role === 1 ? 'Todas' : areaNames}</td>
-                  <td>{user.createdAt.split('T')[0]}</td>
-                  <td className="table_column_actions">
-                    <ul>
-                      <li>
-                        <Link to={`update/${user.id}`}>Editar</Link>
-                      </li>
-                      <li>
-                        <Link to="/">Eliminar</Link>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              ))}
+              {users.length > 0 &&
+                users.map((user: any, index: number) => (
+                  <tr key={index}>
+                    <td>{user.email}</td>
+                    <td>{user.name}</td>
+                    <td>{user.role === 0 ? 'Usuario' : 'Administrador'}</td>
+                    <td>{user.role === 1 ? 'Todas' : areaNames}</td>
+                    <td>{user.createdAt.split('T')[0]}</td>
+                    <td className="table_column_actions">
+                      <ul>
+                        <li>
+                          <Link to={`update/${user.id}`}>Editar</Link>
+                        </li>
+                        <li>
+                          <Link to="/">Eliminar</Link>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
     </div>

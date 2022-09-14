@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
@@ -21,9 +22,9 @@ function Organization() {
   });
   const [amount, setAmount] = useState(0);
   const auth = useAuth();
+  const { user } = auth;
+  const id = user.organization;
   useEffect(() => {
-    const { user } = auth;
-    const id = user.organization;
     getOrganization(id).then((data) => {
       setOrganization(data);
     });
@@ -31,7 +32,7 @@ function Organization() {
       const data: object[] = value;
       setAmount(data.length);
     });
-  }, []);
+  }, [id]);
 
   return (
     <div className="organization">
@@ -61,34 +62,44 @@ function Organization() {
           <Link to="/">Editar</Link>
         </div>
         <div className="card_body">
-          <Row>
-            <Col>
-              <span>Nombre</span>
-            </Col>
-            <Col>
-              <p>{organization.name}</p>
-            </Col>
-            <Col>
-              <span>Ubicación</span>
-            </Col>
-            <Col>
-              <p>02135156</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span>NIT</span>
-            </Col>
-            <Col>
-              <p>{organization.nit}</p>
-            </Col>
-            <Col>
-              <span>Registro</span>
-            </Col>
-            <Col>
-              <p>{organization.createdAt.split('T')[0]}</p>
-            </Col>
-          </Row>
+          {organization.createdAt === '' ? (
+            <span />
+          ) : (
+            <>
+              <Row>
+                <Col>
+                  <span>Nombre</span>
+                </Col>
+                <Col>
+                  <p>{organization.name}</p>
+                </Col>
+                <Col>
+                  <span>Ubicación</span>
+                </Col>
+                <Col>
+                  <p>02135156</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <span>NIT</span>
+                </Col>
+                <Col>
+                  <p>{organization.nit}</p>
+                </Col>
+                <Col>
+                  <span>Registro</span>
+                </Col>
+                <Col>
+                  <p>
+                    {organization.createdAt !== ''
+                      ? organization.createdAt.split('T')[0]
+                      : ''}
+                  </p>
+                </Col>
+              </Row>
+            </>
+          )}
         </div>
       </div>
     </div>

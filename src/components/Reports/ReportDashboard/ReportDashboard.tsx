@@ -153,7 +153,7 @@ function ReportDashboard() {
       </div>
       <div className="ReportDashboard_body">
         <div className="ReportDashboard_body_table">
-          <Table striped bordered hover size="sm">
+          <Table striped bordered hover size="md" responsive>
             <thead>
               <tr>
                 <th>N°</th>
@@ -167,7 +167,7 @@ function ReportDashboard() {
               </tr>
             </thead>
             <tbody>
-              {Array.isArray(reports) ? (
+              {Array.isArray(reports) && (
                 reports.map((item: any) => (
                   <tr>
                     <td>
@@ -188,8 +188,6 @@ function ReportDashboard() {
                     <td>{item.status}</td>
                   </tr>
                 ))
-              ) : (
-                <div />
               )}
             </tbody>
           </Table>

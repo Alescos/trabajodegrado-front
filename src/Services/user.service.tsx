@@ -39,3 +39,15 @@ export const getAllUsers = async (id: number) => {
     });
   return users;
 };
+
+export const getUser = async (id) => {
+  const user = await fetch(`${API_URL}${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((data) => data.json());
+  return user;
+};

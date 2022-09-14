@@ -35,8 +35,8 @@ function App() {
                 <Layout />
               </ProtectedRoute>
             }
+            path=""
           >
-            <Route path="/" element={<Dashboard />} />
             <Route path="organization" element={<Organization />} />
             <Route path="users" element={<UserDashboard />} />
             <Route path="users/register" element={<RegisterUser />} />
@@ -54,6 +54,7 @@ function App() {
             <Route path="equipments/:id" element={<EquipmentDetails />} />
             <Route path="reports/" element={<ReportDashboard />} />
             <Route path="reports/register" element={<CreateReport />} />
+            <Route path="" element={<Dashboard />} />
           </Route>
         </Routes>
       </AuthProvider>

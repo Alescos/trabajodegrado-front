@@ -26,17 +26,18 @@ function Area() {
   const [areas, setAreas] = useState<object[]>([]);
   const [amountAreas, setAmount] = useState(0);
   const [area, setArea] = useState(null);
+  const [organizationId, setOrganizationId] = useState(null);
   const auth = useAuth();
+  const { organization } = auth.user;
   useEffect(() => {
-    const { user } = auth;
-    if (user !== undefined) {
-      getAllAreas(user.organization).then((value) => {
+    if (organization) {
+      getAllAreas(organization).then((value) => {
         const data: object[] = value;
         setAmount(data.length);
         setAreas(data);
       });
     }
-  }, []);
+  }, [organization]);
 
   return (
     <div className="area">
@@ -58,7 +59,7 @@ function Area() {
         </div>
       </div>
       <div className="area_content">
-        {areas.length > 0 ? (
+        {areas.length > 0 &&
           areas.map((item: any, index) => (
             <Link
               key={index}
@@ -67,10 +68,7 @@ function Area() {
             >
               <ItemCard key={index} {...item} />
             </Link>
-          ))
-        ) : (
-          <span />
-        )}
+          ))}
       </div>
     </div>
   );

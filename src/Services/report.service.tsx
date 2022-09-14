@@ -71,3 +71,45 @@ export const getAmountReportsByArea = async (id: string) => {
   }).then((res) => res.json());
   return report;
 };
+
+export const getAmountReportsByType = async (id: string) => {
+  const token = await authHeader();
+
+  const report = await fetch(`${API_URL}byType/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((res) => res.json());
+  return report;
+};
+
+export const getAmountReportsByDate = async (id: string) => {
+  const token = await authHeader();
+
+  const report = await fetch(`${API_URL}byDate/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((res) => res.json());
+  return report;
+};
+
+export const getReportsByTypeByArea = async (id: string) => {
+  const token = await authHeader();
+
+  const reports = await fetch(`${API_URL}${id}/TypesByArea`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  }).then((res) => res.json());
+  return reports;
+};

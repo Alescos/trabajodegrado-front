@@ -43,7 +43,6 @@ function EquipmentDashboard() {
         setEquipments(value);
       }
     });
-    console.log(location);
   }, []);
 
   const handleOnExport = () => {
@@ -137,6 +136,7 @@ function EquipmentDashboard() {
       <div className="equipmentDashboard_content">
         {equipments.map((equipment: any, index) => (
           <Link
+            key={index}
             to={`/equipments/${equipment.id}`}
             className="equipmentDashboard_card"
           >

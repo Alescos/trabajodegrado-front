@@ -27,7 +27,7 @@ export const login = async (email: string, password: string) => {
       }
       return response.json();
     });
-    const data = JSON.stringify(res.data);
+    const data = JSON.stringify(res);
     // sessionStorage.setItem('user', data);
     localStorage.setItem('user', data);
     return res;

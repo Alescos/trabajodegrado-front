@@ -58,7 +58,7 @@
 }
 
 .input_description {
-  height: 100%;
+  height: 80%;
   background-color: #e4e5ef;
   padding: 1rem;
   border-radius: 0.325rem;
@@ -90,4 +90,56 @@
 }
 .UploadReportData:hover {
   color: $backgroundMain-color;
+}
+
+@media (max-width: 600px) {
+  .ReportDashboard_header{
+    margin:0.5rem;
+    height:700px;
+  }
+  .ReportDashboard_item-information {
+    padding: 0.2rem;
+    display: grid;
+    gap: 0.3rem;
+    grid-template-columns: 35% 35% 27%;
+    grid-template-rows: 12% 12% 12% 12% 12% 12% 28%;
+  }
+
+.item-information_equipment,
+.item-information_user,
+.item-information_area,
+.item-information_type,
+.item-information_priority,
+.item-information_reportDate,
+.item-information_description {
+  grid-column:1/4;
+}
+
+.item-information_type {
+  grid-row: 1/2;
+}
+.item-information_equipment {
+  grid-row: 2/3;
+}
+.item-information_user{
+  grid-row: 3/4;
+}
+.item-information_area{
+  grid-row:4/5;
+}
+.item-information_priority{
+  grid-row:5/6;
+}
+.item-information_reportDate{
+  grid-row:6/7;
+}
+.item-information_description{
+  grid-row:7/8;
+}
+.ReportDashboard_body{
+  margin:0.5rem
+}
+.ReportDashboard_body_table{
+  padding:0.3rem
+}
 }
